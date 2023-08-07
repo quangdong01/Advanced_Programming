@@ -7,11 +7,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
-import login.additionalInformation;
 import login.loginWindow;
 import login.registerWindow;
 
@@ -19,14 +20,16 @@ public class User extends javax.swing.JFrame {
 
     public loginWindow loginwindow;
     public int userID;
+    public int customerID;
     public String nameUser;
     public String username;
-    public String password;;
+    public String password;
     
     
     public User(int userID, loginWindow loginwindow) {
         this.loginwindow = loginwindow;
         this.userID = userID;
+        getCustomerID();
         initComponents();
         setEchor();
         setLabelGen();
@@ -37,6 +40,28 @@ public class User extends javax.swing.JFrame {
         
     }
     
+    public void getCustomerID()
+    {
+        try
+        {
+            String getCustomerID = "Select Customer_ID From Customers Where User_ID = ?";
+            try(PreparedStatement sqlgetCustomerID = this.loginwindow.db.cnt.prepareStatement(getCustomerID))
+            {
+                sqlgetCustomerID.setInt(1, this.userID);
+                ResultSet rs = sqlgetCustomerID.executeQuery();
+                
+                while(rs.next())
+                {
+                    this.customerID = rs.getInt("Customer_ID");
+                }
+            }
+            
+        }
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     public void setEchor()
     {
         jpwfOldPassword.setEchoChar((char)0);
@@ -253,7 +278,7 @@ public class User extends javax.swing.JFrame {
         jlEvaluateApplication = new javax.swing.JLabel();
         jSeparator9 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
-        jbInformationUser3 = new javax.swing.JLabel();
+        jlTripBook = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
         jbInformationUser4 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
@@ -349,6 +374,28 @@ public class User extends javax.swing.JFrame {
         jtfEvaluate = new javax.swing.JTextField();
         jbtnUpdateEvaluate = new javax.swing.JButton();
         jlSuccessEvaluate = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jlCarID1 = new javax.swing.JLabel();
+        jtfWeight = new javax.swing.JTextField();
+        jlCarID2 = new javax.swing.JLabel();
+        jtfStartPoint = new javax.swing.JTextField();
+        jlCarID3 = new javax.swing.JLabel();
+        jtfDestinationPoint = new javax.swing.JTextField();
+        jlWeight = new javax.swing.JLabel();
+        jlStartPoint = new javax.swing.JLabel();
+        jlDestinationPoint = new javax.swing.JLabel();
+        jlCarID4 = new javax.swing.JLabel();
+        jtfDistanceSum = new javax.swing.JTextField();
+        jlDistanceSum = new javax.swing.JLabel();
+        jbtnTripBook = new javax.swing.JButton();
+        jcbConfirmBook = new javax.swing.JCheckBox();
+        jlConfirmBook = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sourceIMG/resource/logo VIN.png"))); // NOI18N
 
@@ -487,22 +534,38 @@ public class User extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(51, 51, 255));
         jLabel2.setText("QUẢN LÝ ĐƠN HÀNG");
 
-        jbInformationUser3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jbInformationUser3.setForeground(new java.awt.Color(51, 102, 255));
-        jbInformationUser3.setText("Đặt chuyến hàng");
-        jbInformationUser3.setToolTipText("");
-        jbInformationUser3.setOpaque(true);
+        jlTripBook.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jlTripBook.setForeground(new java.awt.Color(51, 102, 255));
+        jlTripBook.setText("Đặt chuyến hàng");
+        jlTripBook.setToolTipText("");
+        jlTripBook.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlTripBook.setOpaque(true);
+        jlTripBook.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jlTripBookMouseMoved(evt);
+            }
+        });
+        jlTripBook.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlTripBookMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jlTripBookMouseExited(evt);
+            }
+        });
 
         jbInformationUser4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jbInformationUser4.setForeground(new java.awt.Color(51, 102, 255));
         jbInformationUser4.setText("Đơn hàng chờ xác nhận");
         jbInformationUser4.setToolTipText("");
+        jbInformationUser4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbInformationUser4.setOpaque(true);
 
         jbInformationUser6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jbInformationUser6.setForeground(new java.awt.Color(51, 102, 255));
         jbInformationUser6.setText("Đơn hàng giao thành công");
         jbInformationUser6.setToolTipText("");
+        jbInformationUser6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbInformationUser6.setOpaque(true);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sourceIMG/resource/logovantai.png"))); // NOI18N
@@ -511,12 +574,14 @@ public class User extends javax.swing.JFrame {
         jbInformationUser7.setForeground(new java.awt.Color(51, 102, 255));
         jbInformationUser7.setText("Đơn hàng đang giao");
         jbInformationUser7.setToolTipText("");
+        jbInformationUser7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbInformationUser7.setOpaque(true);
 
         jbInformationUser5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jbInformationUser5.setForeground(new java.awt.Color(51, 102, 255));
         jbInformationUser5.setText("Đơn hàng đã hủy");
         jbInformationUser5.setToolTipText("");
+        jbInformationUser5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbInformationUser5.setOpaque(true);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -533,7 +598,7 @@ public class User extends javax.swing.JFrame {
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(48, 48, 48))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jbInformationUser3, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jlTripBook, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -618,7 +683,7 @@ public class User extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jbInformationUser3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlTripBook, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1097,6 +1162,148 @@ public class User extends javax.swing.JFrame {
         jPanel5.add(jlSuccessEvaluate, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 490, 310, 30));
 
         jTabbedPaneUser.addTab("tab4", jPanel5);
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sourceIMG/newImage/important.jpg"))); // NOI18N
+        jPanel6.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, -1, -1));
+
+        jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(0, 204, 0));
+        jLabel24.setText("THÔNG TIN ĐẶT HÀNG");
+        jPanel6.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, 43));
+
+        jlCarID1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jlCarID1.setText("Khối lượng hàng:");
+        jPanel6.add(jlCarID1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, -1, 30));
+
+        jtfWeight.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jtfWeight.setForeground(new java.awt.Color(153, 153, 153));
+        jtfWeight.setText("khối lượng hàng");
+        jtfWeight.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jtfWeight.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtfWeightFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtfWeightFocusLost(evt);
+            }
+        });
+        jPanel6.add(jtfWeight, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 330, 610, 37));
+
+        jlCarID2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jlCarID2.setText("Điểm xuất phát:");
+        jPanel6.add(jlCarID2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, -1, 30));
+
+        jtfStartPoint.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jtfStartPoint.setForeground(new java.awt.Color(153, 153, 153));
+        jtfStartPoint.setText("điểm xuất phát");
+        jtfStartPoint.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jtfStartPoint.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtfStartPointFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtfStartPointFocusLost(evt);
+            }
+        });
+        jPanel6.add(jtfStartPoint, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 90, 610, 37));
+
+        jlCarID3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jlCarID3.setText("Điểm kết thúc:");
+        jPanel6.add(jlCarID3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, -1, 30));
+
+        jtfDestinationPoint.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jtfDestinationPoint.setForeground(new java.awt.Color(153, 153, 153));
+        jtfDestinationPoint.setText("điểm kết thúc");
+        jtfDestinationPoint.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jtfDestinationPoint.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtfDestinationPointFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtfDestinationPointFocusLost(evt);
+            }
+        });
+        jPanel6.add(jtfDestinationPoint, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 610, 37));
+
+        jlWeight.setForeground(new java.awt.Color(255, 0, 51));
+        jPanel6.add(jlWeight, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 370, 610, 20));
+
+        jlStartPoint.setForeground(new java.awt.Color(255, 0, 51));
+        jPanel6.add(jlStartPoint, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 610, 20));
+
+        jlDestinationPoint.setForeground(new java.awt.Color(255, 0, 51));
+        jPanel6.add(jlDestinationPoint, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, 610, 20));
+
+        jlCarID4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jlCarID4.setText("Tổng quãng đường:");
+        jPanel6.add(jlCarID4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, -1, 30));
+
+        jtfDistanceSum.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jtfDistanceSum.setForeground(new java.awt.Color(153, 153, 153));
+        jtfDistanceSum.setText("tổng quãng đường");
+        jtfDistanceSum.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jtfDistanceSum.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtfDistanceSumFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtfDistanceSumFocusLost(evt);
+            }
+        });
+        jPanel6.add(jtfDistanceSum, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, 610, 37));
+
+        jlDistanceSum.setForeground(new java.awt.Color(255, 0, 51));
+        jPanel6.add(jlDistanceSum, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 610, 20));
+
+        jbtnTripBook.setBackground(new java.awt.Color(51, 51, 255));
+        jbtnTripBook.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jbtnTripBook.setForeground(new java.awt.Color(255, 255, 255));
+        jbtnTripBook.setText("Đặt hàng");
+        jbtnTripBook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnTripBookActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jbtnTripBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 500, 120, 40));
+
+        jcbConfirmBook.setBackground(new java.awt.Color(255, 255, 255));
+        jcbConfirmBook.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jcbConfirmBook.setText("Tôi xác nhận đặt hàng");
+        jcbConfirmBook.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jcbConfirmBook.setOpaque(true);
+        jPanel6.add(jcbConfirmBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 430, -1, -1));
+
+        jlConfirmBook.setForeground(new java.awt.Color(255, 0, 51));
+        jPanel6.add(jlConfirmBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 430, 100, 20));
+
+        jLabel26.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jLabel26.setText("CHÚC QUÝ KHÁCH TRẢI NGHIỆM DỊCH VỤ HÀI LÒNG");
+        jPanel6.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 730, 380, 50));
+
+        jTabbedPaneUser.addTab("tab5", jPanel6);
+
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jPanel7.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 900, 710));
+
+        jTabbedPaneUser.addTab("tab6", jPanel7);
 
         getContentPane().add(jTabbedPaneUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 920, 830));
 
@@ -1629,6 +1836,228 @@ public class User extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jbtnUpdateEvaluateActionPerformed
 
+    private void jtfStartPointFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfStartPointFocusGained
+        // TODO add your handling code here:
+        if (jtfStartPoint.getText().equals("điểm xuất phát"))
+        {
+            jtfStartPoint.setText("");
+            jlStartPoint.setText("");
+            jtfStartPoint.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+            jtfStartPoint.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_jtfStartPointFocusGained
+
+    private void jtfStartPointFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfStartPointFocusLost
+        // TODO add your handling code here:
+        if (jtfStartPoint.getText().equals(""))
+        {
+            jtfStartPoint.setText("điểm xuất phát");
+            jtfStartPoint.setFont(new Font("Segoe UI", Font.ITALIC, 12));
+            jtfStartPoint.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_jtfStartPointFocusLost
+
+    private void jtfDestinationPointFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfDestinationPointFocusGained
+        // TODO add your handling code here:
+        if (jtfDestinationPoint.getText().equals("điểm kết thúc"))
+        {
+            jtfDestinationPoint.setText("");
+            jlDestinationPoint.setText("");
+            jtfDestinationPoint.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+            jtfDestinationPoint.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_jtfDestinationPointFocusGained
+
+    private void jtfDestinationPointFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfDestinationPointFocusLost
+        // TODO add your handling code here:
+        if (jtfDestinationPoint.getText().equals(""))
+        {
+            jtfDestinationPoint.setText("điểm kết thúc");
+            jtfDestinationPoint.setFont(new Font("Segoe UI", Font.ITALIC, 12));
+            jtfDestinationPoint.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_jtfDestinationPointFocusLost
+
+    private void jtfDistanceSumFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfDistanceSumFocusGained
+        // TODO add your handling code here:
+        if (jtfDistanceSum.getText().equals("tổng quãng đường"))
+        {
+            jtfDistanceSum.setText("");
+            jlDistanceSum.setText("");
+            jtfDistanceSum.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+            jtfDistanceSum.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_jtfDistanceSumFocusGained
+
+    private void jtfDistanceSumFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfDistanceSumFocusLost
+        // TODO add your handling code here:
+        if (jtfDistanceSum.getText().equals(""))
+        {
+            jtfDistanceSum.setText("tổng quãng đường");
+            jtfDistanceSum.setFont(new Font("Segoe UI", Font.ITALIC, 12));
+            jtfDistanceSum.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_jtfDistanceSumFocusLost
+
+    private void jtfWeightFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfWeightFocusGained
+        // TODO add your handling code here:
+        if (jtfWeight.getText().equals("khối lượng hàng"))
+        {
+            jtfWeight.setText("");
+            jlWeight.setText("");
+            jtfWeight.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+            jtfWeight.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_jtfWeightFocusGained
+
+    private void jtfWeightFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfWeightFocusLost
+        // TODO add your handling code here:
+        if (jtfWeight.getText().equals(""))
+        {
+            jtfWeight.setText("khối lượng hàng");
+            jtfWeight.setFont(new Font("Segoe UI", Font.ITALIC, 12));
+            jtfWeight.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_jtfWeightFocusLost
+
+    private void jlTripBookMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlTripBookMouseClicked
+        // TODO add your handling code here:
+        jcbConfirmBook.setSelected(false);
+        jTabbedPaneUser.setSelectedIndex(4);
+    }//GEN-LAST:event_jlTripBookMouseClicked
+
+    private void jlTripBookMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlTripBookMouseExited
+        // TODO add your handling code here:
+        jlTripBook.setBackground(new Color(242,242,242));
+    }//GEN-LAST:event_jlTripBookMouseExited
+
+    private void jlTripBookMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlTripBookMouseMoved
+        // TODO add your handling code here:
+        jlTripBook.setBackground(new Color(255, 255, 255));
+    }//GEN-LAST:event_jlTripBookMouseMoved
+
+    private void jbtnTripBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnTripBookActionPerformed
+        // TODO add your handling code here:
+        
+        jlStartPoint.setText("");
+        jlDestinationPoint.setText("");
+        jlDistanceSum.setText("");
+        jlWeight.setText("");
+        jlConfirmBook.setText("");
+        
+        String startp = jtfStartPoint.getText();
+        String destp = jtfDestinationPoint.getText();
+        String distances = jtfDistanceSum.getText();
+        String wei = jtfWeight.getText();
+        boolean checkCommit = jcbConfirmBook.isSelected();
+        
+        if(startp.equals("điểm xuất phát") || destp.equals("điểm kết thúc") || distances.equals("tổng quãng đường") || wei.equals("khối lượng hàng"))
+        {
+            if(startp.equals("điểm xuất phát"))
+            {
+                jlStartPoint.setText("bắt buộc");
+            }
+            
+            if(destp.equals("điểm kết thúc"))
+            {
+               jlDestinationPoint.setText("bắt buộc"); 
+            }
+            
+            if(distances.equals("tổng quãng đường"))
+            {
+                jlDistanceSum.setText("bắt buộc");
+            }
+            
+            if(wei.equals("khối lượng hàng"))
+            {
+                jlWeight.setText("bắt buộc");
+            }
+        }
+        else
+        {
+            if(!checkCommit)
+            {
+                jlConfirmBook.setText("bắt buộc");
+            }
+            else
+            {
+                // chuyen string to int 
+                // quang duong
+                int intdistances = Integer.parseInt(distances);
+                
+                // khoi luong hang
+                int intwei = Integer.parseInt(wei);
+                
+                // tinh tong so tien can thanh toan
+                int pay = intdistances * 10000 * intwei;   
+                
+                // thoi gian dat hang
+                Timestamp datetime = new Timestamp(System.currentTimeMillis());
+                
+                try
+                {
+                    // dua du lieu vao database Trips
+
+                    String createTrip = "Insert Into Trips([Customer_ID], [Điểm xuất phát], [Điểm kết thúc], [Thời gian đặt hàng], [Tổng quãng đường], [Khối lượng hàng], [Phí dịch vụ], [Trạng thái])"
+                            + " Values(?, ?, ?, ?, ?, ?, ?, ?)";
+
+                    try(PreparedStatement sqlcreateTrip = this.loginwindow.db.cnt.prepareStatement(createTrip))
+                    {
+                        sqlcreateTrip.setInt(1, this.customerID);
+                        sqlcreateTrip.setString(2, startp);
+                        sqlcreateTrip.setString(3, destp);
+                        sqlcreateTrip.setTimestamp(4, datetime);
+                        sqlcreateTrip.setInt(5, intdistances);
+                        sqlcreateTrip.setInt(6, intwei);
+                        sqlcreateTrip.setInt(7, pay);
+                        sqlcreateTrip.setString(8, "Đang chờ");
+                        
+                        sqlcreateTrip.executeUpdate();
+                    }
+                    
+                    String getTripID = "SELECT TOP 1 * FROM Trips ORDER BY Trip_ID DESC ";
+                    
+                    int tripID = -1;
+                    try(PreparedStatement sqlgetTripID = this.loginwindow.db.cnt.prepareStatement(getTripID))
+                    {
+
+
+                        // System.out.println("Here!");
+                        ResultSet rs = sqlgetTripID.executeQuery();
+                        while(rs.next())
+                        {
+                            tripID = rs.getInt("Trip_ID");
+                        }
+                    }                    
+                    this.enable(false);
+                    new Bill(this, datetime, tripID, startp, destp, intdistances, intwei, pay).setVisible(true);
+                    
+                    // set place holder
+                    jtfStartPoint.setText("điểm xuất phát");
+                    jtfStartPoint.setFont(new Font("Segoe UI", Font.ITALIC, 12));
+                    jtfStartPoint.setForeground(new Color(153, 153, 153));
+                    
+                    jtfDestinationPoint.setText("điểm kết thúc");
+                    jtfDestinationPoint.setFont(new Font("Segoe UI", Font.ITALIC, 12));
+                    jtfDestinationPoint.setForeground(new Color(153, 153, 153));
+                    
+                    jtfDistanceSum.setText("tổng quãng đường");
+                    jtfDistanceSum.setFont(new Font("Segoe UI", Font.ITALIC, 12));
+                    jtfDistanceSum.setForeground(new Color(153, 153, 153));
+                    
+                    jtfWeight.setText("khối lượng hàng");
+                    jtfWeight.setFont(new Font("Segoe UI", Font.ITALIC, 12));
+                    jtfWeight.setForeground(new Color(153, 153, 153));
+
+                }
+                catch(SQLException ex)
+                {
+                    Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }     
+    }//GEN-LAST:event_jbtnTripBookActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1645,7 +2074,10 @@ public class User extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
@@ -1666,6 +2098,9 @@ public class User extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator11;
@@ -1682,15 +2117,17 @@ public class User extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTabbedPane jTabbedPaneUser;
-    private javax.swing.JLabel jbInformationUser3;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel jbInformationUser4;
     private javax.swing.JLabel jbInformationUser5;
     private javax.swing.JLabel jbInformationUser6;
     private javax.swing.JLabel jbInformationUser7;
     private javax.swing.JButton jbtnSubmit;
+    private javax.swing.JButton jbtnTripBook;
     private javax.swing.JButton jbtnUpdate;
     private javax.swing.JButton jbtnUpdateEvaluate;
     private javax.swing.JCheckBox jcbConfirm;
+    private javax.swing.JCheckBox jcbConfirmBook;
     private javax.swing.JCheckBox jcbConfirmEditUser;
     private javax.swing.JLabel jl1sao;
     private javax.swing.JLabel jl2sao;
@@ -1700,10 +2137,17 @@ public class User extends javax.swing.JFrame {
     private javax.swing.JLabel jlAddress;
     private javax.swing.JLabel jlAvatarCustomer;
     private javax.swing.JLabel jlCarID;
+    private javax.swing.JLabel jlCarID1;
+    private javax.swing.JLabel jlCarID2;
+    private javax.swing.JLabel jlCarID3;
+    private javax.swing.JLabel jlCarID4;
     private javax.swing.JLabel jlChangePassword;
     private javax.swing.JLabel jlCheckOK;
     private javax.swing.JLabel jlConfirm;
+    private javax.swing.JLabel jlConfirmBook;
     private javax.swing.JLabel jlDayOfBirth;
+    private javax.swing.JLabel jlDestinationPoint;
+    private javax.swing.JLabel jlDistanceSum;
     private javax.swing.JLabel jlEmail;
     private javax.swing.JLabel jlEva1sao;
     private javax.swing.JLabel jlEva2sao;
@@ -1722,19 +2166,24 @@ public class User extends javax.swing.JFrame {
     private javax.swing.JLabel jlRole;
     private javax.swing.JLabel jlSex;
     private javax.swing.JLabel jlShowName;
+    private javax.swing.JLabel jlStartPoint;
     private javax.swing.JLabel jlSuccess;
     private javax.swing.JLabel jlSuccessEditUser;
     private javax.swing.JLabel jlSuccessEvaluate;
+    private javax.swing.JLabel jlTripBook;
     private javax.swing.JLabel jlUpdateInformationUser;
     private javax.swing.JLabel jlUserID;
     private javax.swing.JLabel jlWarningConfirm;
     private javax.swing.JLabel jlWarningEmail;
     private javax.swing.JLabel jlWarningIdentityNumber;
     private javax.swing.JLabel jlWarningPhoneNumber;
+    private javax.swing.JLabel jlWeight;
     private javax.swing.JLabel jlnotifyOldPassword;
     private javax.swing.JPasswordField jpwfConfirmPassword;
     private javax.swing.JPasswordField jpwfNewPassword;
     private javax.swing.JPasswordField jpwfOldPassword;
+    private javax.swing.JTextField jtfDestinationPoint;
+    private javax.swing.JTextField jtfDistanceSum;
     private javax.swing.JTextField jtfEditAddress;
     private javax.swing.JTextField jtfEditDayOfBirth;
     private javax.swing.JTextField jtfEditIdentityNumber;
@@ -1743,6 +2192,8 @@ public class User extends javax.swing.JFrame {
     private javax.swing.JTextField jtfEditSexUser;
     private javax.swing.JTextField jtfEditUserName;
     private javax.swing.JTextField jtfEvaluate;
+    private javax.swing.JTextField jtfStartPoint;
     private javax.swing.JTextField jtfUserID;
+    private javax.swing.JTextField jtfWeight;
     // End of variables declaration//GEN-END:variables
 }

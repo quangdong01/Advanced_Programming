@@ -431,7 +431,7 @@ public class registerWindow extends javax.swing.JFrame {
                             
                             // System.out.println("Here!");
                             sqlUserWrite.executeUpdate();
-                            System.out.println("Here!");
+                            
                             // thực hiện lấy UserID để truy vấn cho câu tiếp theo
                             
                             // câu truy vấn mới
