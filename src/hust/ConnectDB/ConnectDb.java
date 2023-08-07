@@ -35,6 +35,7 @@ public class ConnectDb {
         } 
         catch (SQLServerException ex) 
         {
+            System.out.println("Connect to database Fail...");
             Logger.getLogger(ConnectDb.class.getName()).log(Level.SEVERE, null, ex);
         }
     

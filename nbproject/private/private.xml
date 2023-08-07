@@ -4,10 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/QuangDong/NetBean_Project/Vehicle%20and%20Driver%20Management/src/login/loginWindow.java</file>
-            <file>file:/D:/QuangDong/NetBean_Project/Vehicle%20and%20Driver%20Management/src/manageInformation/Male.png</file>
+            <file>file:/D:/QuangDong/NetBean_Project/Vehicle%20and%20Driver%20Management/src/manageInformation/User.java</file>
             <file>file:/D:/QuangDong/NetBean_Project/Vehicle%20and%20Driver%20Management/src/login/additionalInformation.java</file>
-            <file>file:/D:/QuangDong/NetBean_Project/Vehicle%20and%20Driver%20Management/src/hust/ConnectDB/ConnectDb.java</file>
+            <file>file:/D:/QuangDong/NetBean_Project/Vehicle%20and%20Driver%20Management/src/manageInformation/CarManager.java</file>
             <file>file:/D:/QuangDong/NetBean_Project/Vehicle%20and%20Driver%20Management/src/login/registerWindow.java</file>
+            <file>file:/D:/QuangDong/NetBean_Project/Vehicle%20and%20Driver%20Management/src/manageInformation/DriverManager.java</file>
         </group>
     </open-files>
 </project-private>

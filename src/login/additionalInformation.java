@@ -93,17 +93,17 @@ public class additionalInformation extends javax.swing.JFrame {
         jLabel1.setText("Personal");
 
         jLabel2.setBackground(new java.awt.Color(204, 204, 255));
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Họ tên");
         jLabel2.setOpaque(true);
 
         jLabel4.setBackground(new java.awt.Color(204, 204, 255));
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Số chứng minh thư");
         jLabel4.setOpaque(true);
 
         jLabel5.setBackground(new java.awt.Color(204, 204, 255));
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Số điện thoại");
         jLabel5.setOpaque(true);
 
@@ -112,7 +112,7 @@ public class additionalInformation extends javax.swing.JFrame {
         jLabel7.setText("Contact");
 
         jLabel8.setBackground(new java.awt.Color(204, 204, 255));
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setText("Địa chỉ");
         jLabel8.setOpaque(true);
 
@@ -161,16 +161,31 @@ public class additionalInformation extends javax.swing.JFrame {
 
         jtfName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jtfName.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(205, 220, 244), null));
+        jtfName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtfNameFocusGained(evt);
+            }
+        });
 
         jlWarningName.setForeground(new java.awt.Color(255, 0, 51));
 
         jtfIdentityNumber.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jtfIdentityNumber.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(205, 220, 244), null));
+        jtfIdentityNumber.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtfIdentityNumberFocusGained(evt);
+            }
+        });
 
         jlWarningIdentityNumber.setForeground(new java.awt.Color(255, 0, 0));
 
         jtfNumberPhone.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jtfNumberPhone.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(205, 220, 244), null));
+        jtfNumberPhone.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtfNumberPhoneFocusGained(evt);
+            }
+        });
         jtfNumberPhone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtfNumberPhoneActionPerformed(evt);
@@ -181,14 +196,24 @@ public class additionalInformation extends javax.swing.JFrame {
 
         jtfAddress.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jtfAddress.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(205, 220, 244), null));
+        jtfAddress.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtfAddressFocusGained(evt);
+            }
+        });
 
         jlWarningAddress.setForeground(new java.awt.Color(255, 0, 51));
 
         jtfEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jtfEmail.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(205, 220, 244), null));
+        jtfEmail.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtfEmailFocusGained(evt);
+            }
+        });
 
         jLabel12.setBackground(new java.awt.Color(204, 204, 255));
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel12.setText("Email");
         jLabel12.setOpaque(true);
 
@@ -228,12 +253,12 @@ public class additionalInformation extends javax.swing.JFrame {
         });
 
         jLabel3.setBackground(new java.awt.Color(204, 204, 255));
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Ngày tháng năm sinh");
         jLabel3.setOpaque(true);
 
         jLabel6.setBackground(new java.awt.Color(204, 204, 255));
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setText("Giới tính");
         jLabel6.setOpaque(true);
 
@@ -289,7 +314,7 @@ public class additionalInformation extends javax.swing.JFrame {
                                                     .addGap(41, 41, 41)
                                                     .addComponent(jcbYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(jcbGen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(jLabel6))))
@@ -417,16 +442,6 @@ public class additionalInformation extends javax.swing.JFrame {
         Date dateBirth = Date.valueOf(dayOfBirth);
         
         String gender = jcbGen.getSelectedItem().toString();
-        
-        System.out.println(Name);
-        System.out.println(IdentityNumber);
-        System.out.println(NumberPhone);
-        System.out.println(Address);
-        System.out.println(Email);
-        System.out.println(dateBirth);
-        System.out.println(gender);
-        
-        
         
         // Xử lí ghi dữ diệu kiểm tra và ghi vào database
         if((Name.equals("")) || (IdentityNumber.equals("")) || (NumberPhone.equals("")) || (Address.equals("")) || (onlyFirstEmail.equals("")))
@@ -591,6 +606,31 @@ public class additionalInformation extends javax.swing.JFrame {
     private void jcbGenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbGenActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jcbGenActionPerformed
+
+    private void jtfNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfNameFocusGained
+        // TODO add your handling code here:
+        jlWarningName.setText("");
+    }//GEN-LAST:event_jtfNameFocusGained
+
+    private void jtfIdentityNumberFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfIdentityNumberFocusGained
+        // TODO add your handling code here:
+        jlWarningIdentityNumber.setText("");
+    }//GEN-LAST:event_jtfIdentityNumberFocusGained
+
+    private void jtfEmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfEmailFocusGained
+        // TODO add your handling code here:
+        jlWarningEmail.setText("");
+    }//GEN-LAST:event_jtfEmailFocusGained
+
+    private void jtfNumberPhoneFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfNumberPhoneFocusGained
+        // TODO add your handling code here:
+        jlWarningPhoneNumber.setText("");
+    }//GEN-LAST:event_jtfNumberPhoneFocusGained
+
+    private void jtfAddressFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfAddressFocusGained
+        // TODO add your handling code here:
+        jlWarningAddress.setText("");
+    }//GEN-LAST:event_jtfAddressFocusGained
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -208,14 +208,15 @@ public class registerWindow extends javax.swing.JFrame {
         jLabel2.setBackground(new java.awt.Color(233, 96, 96));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(239, 77, 77));
-        jLabel2.setText("Tạo tài khoản người dùng");
+        jLabel2.setText("TẠO TÀI KHOẢN NGƯỜI DÙNG");
         jLabel2.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 51, 51), null));
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 35, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 102, 102));
+        jLabel1.setForeground(new java.awt.Color(204, 0, 51));
         jLabel1.setText("Account");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 172, -1, -1));
+        jLabel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 51, 51), null));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 80, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -264,6 +265,7 @@ public class registerWindow extends javax.swing.JFrame {
         if (jtfCreateAccount.getText().equals("tài khoản")) 
         {
             jtfCreateAccount.setText("");
+            jlWarningAccount.setText("");
             jtfCreateAccount.setFont(new Font("Segoe UI", Font.PLAIN, 18));
             jtfCreateAccount.setForeground(new Color(0, 0, 0));
         }
@@ -273,7 +275,7 @@ public class registerWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         // kiểm tra người thao tác đã nhập tài khoản chưa, nếu chưa thì set placehoder cho nó
         if (jtfCreateAccount.getText().equals("")) 
-        {
+        { 
             jtfCreateAccount.setText("tài khoản");
             jtfCreateAccount.setFont(new Font("Segoe UI", Font.ITALIC, 12));
             jtfCreateAccount.setForeground(new Color(153, 153, 153));
@@ -297,6 +299,7 @@ public class registerWindow extends javax.swing.JFrame {
         if (jpwfCreatePassword.getText().equals("mật khẩu"))
         {
             jpwfCreatePassword.setText("");
+            jlWarningPassword.setText("");
             jpwfCreatePassword.setFont(new Font("Segoe UI", Font.BOLD, 25));
             jpwfCreatePassword.setEchoChar('.');
             jpwfCreatePassword.setForeground(new Color(0, 0, 0));
@@ -308,6 +311,7 @@ public class registerWindow extends javax.swing.JFrame {
         if (jpwfIdentityCreatePassword.getText().equals("xác thực mật khẩu"))
         {
             jpwfIdentityCreatePassword.setText("");
+            jlWarningidentityPassword.setText("");
             jpwfIdentityCreatePassword.setFont(new Font("Segoe UI", Font.BOLD, 25));
             jpwfIdentityCreatePassword.setEchoChar('.');
             jpwfIdentityCreatePassword.setForeground(new Color(0, 0, 0));
@@ -460,8 +464,7 @@ public class registerWindow extends javax.swing.JFrame {
                             
                             // thực hiện truy vấn tới database
                             sqlUserWrite.executeUpdate();
-                            
-                            System.out.println("Complete");
+
                             
                             new additionalInformation(this).setVisible(true);
                             this.dispose();

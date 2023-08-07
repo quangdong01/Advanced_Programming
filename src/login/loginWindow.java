@@ -7,9 +7,11 @@ import java.util.Random;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import manageInformation.CarManager;
 import manageInformation.User;
 import manageInformation.Driver;
-import manageInformation.Manager;
+import manageInformation.DriverManager;
+import manageInformation.TripManager;
 
 public class loginWindow extends javax.swing.JFrame {
 
@@ -22,11 +24,9 @@ public class loginWindow extends javax.swing.JFrame {
     public loginWindow() {
         initComponents();
         // Tạo thể hiện của ConnectDb để thực hiện kết nối Netbean với SQL Server
-        db.connectToDatabase("DESKTOP-FK8GTVI\\SQLEXPRESS", "qd", "QuangDong@21122001", "Vehicle and Driver Management", 1433);
+        db.connectToDatabase("LAPTOP-N1B2Q5TJ\\SQLEXPRESS01", "qd", "QuangDong@21122001", "Vehicle and Driver Management", 1433);
         jlRandomNumber.setText(String.valueOf(10000 + rand.nextInt(99999)));
         jpwfPassword.setEchoChar((char)0);
-        // jbtnRegister.setContentAreaFilled(false);
-        // jbtnLogin.setContentAreaFilled(false); 
     }
 
     @SuppressWarnings("unchecked")
@@ -62,6 +62,7 @@ public class loginWindow extends javax.swing.JFrame {
         jlWarningLogin = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
         jtfAccount = new javax.swing.JTextField();
+        jbtnExit = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -261,12 +262,24 @@ public class loginWindow extends javax.swing.JFrame {
         jtfAccount.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         jtfAccount.setForeground(new java.awt.Color(153, 153, 153));
         jtfAccount.setText("tài khoản");
+        jtfAccount.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jtfAccount.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jtfAccountFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jtfAccountFocusLost(evt);
+            }
+        });
+
+        jbtnExit.setBackground(new java.awt.Color(0, 51, 255));
+        jbtnExit.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jbtnExit.setForeground(new java.awt.Color(255, 255, 255));
+        jbtnExit.setText("Thoát ");
+        jbtnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbtnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnExitActionPerformed(evt);
             }
         });
 
@@ -292,21 +305,26 @@ public class loginWindow extends javax.swing.JFrame {
                                     .addComponent(jrbtnShiper)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(60, 60, 60)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jlbWarningAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE)
-                                    .addComponent(jlbWarningPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jlWarningIdentityCode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jlbWarningAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE)
+                                        .addComponent(jlbWarningPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jtfIdentifyCode, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jpwfPassword)
+                                        .addComponent(jtfAccount))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jbtnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(136, 136, 136)
-                                        .addComponent(jbtnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jtfIdentifyCode, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jpwfPassword)
-                                    .addComponent(jlWarningLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jtfAccount))))
-                        .addGap(0, 206, Short.MAX_VALUE))
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jlWarningIdentityCode, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jlWarningLogin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                                .addComponent(jbtnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(136, 136, 136)
+                                                .addComponent(jbtnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(157, 157, 157)
+                                        .addComponent(jbtnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 148, Short.MAX_VALUE))
                     .addComponent(jSeparator3))
                 .addContainerGap())
             .addComponent(jSeparator4)
@@ -347,9 +365,11 @@ public class loginWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlWarningIdentityCode, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbtnRegister, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbtnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jbtnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbtnRegister, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)))
                 .addGap(6, 6, 6)
                 .addComponent(jlWarningLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -387,7 +407,7 @@ public class loginWindow extends javax.swing.JFrame {
             .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -396,7 +416,7 @@ public class loginWindow extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jlLogoHust)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                         .addComponent(jlLogoVinFast, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jl2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -442,6 +462,7 @@ public class loginWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (jpwfPassword.getText().equals("mật khẩu")) {
             jpwfPassword.setText("");
+            jlbWarningPassword.setText("");
             jpwfPassword.setFont(new Font("Segoe UI", Font.BOLD, 25));
             jpwfPassword.setEchoChar('.');
             jpwfPassword.setForeground(new Color(0, 0, 0));
@@ -596,11 +617,12 @@ public class loginWindow extends javax.swing.JFrame {
                                 {
                                     new User(userID, this).setVisible(true);
                                     this.dispose();
+                                    setPlaceHolder();
                                 }
                                 else
                                 {
                                     // hiển hị thông báo đỏ không tồn tại tài khoản
-                                    jlWarningLogin.setText("Tài khoản không khợp với vai trò hoặc nhập sai mật khẩu");
+                                    jlWarningLogin.setText("Tài khoản không khớp với vai trò hoặc nhập sai mật khẩu");
 
                                     // Hàm thực hiện thay đổi mã xác nhận
                                     int valueChanged = 10000 + rand.nextInt(99999);
@@ -621,7 +643,7 @@ public class loginWindow extends javax.swing.JFrame {
                         else
                         {
                             // hiển hị thông báo đỏ không tồn tại tài khoản
-                            jlWarningLogin.setText("Tài khoản không khợp với vai trò hoặc nhập sai mật khẩu");
+                            jlWarningLogin.setText("Tài khoản không khớp với vai trò hoặc nhập sai mật khẩu");
 
                             // Hàm thực hiện thay đổi mã xác nhận
                             int valueChanged = 10000 + rand.nextInt(99999);
@@ -696,11 +718,12 @@ public class loginWindow extends javax.swing.JFrame {
                                 {
                                     new Driver(userID, this).setVisible(true);
                                     this.dispose();
+                                    setPlaceHolder();
                                 }
                                 else
                                 {
                                     // hiển hị thông báo đỏ không tồn tại tài khoản
-                                    jlWarningLogin.setText("Tài khoản không khợp với vai trò hoặc nhập sai mật khẩu");
+                                    jlWarningLogin.setText("Tài khoản không khớp với vai trò hoặc nhập sai mật khẩu");
 
                                     // Hàm thực hiện thay đổi mã xác nhận
                                     int valueChanged = 10000 + rand.nextInt(99999);
@@ -744,30 +767,98 @@ public class loginWindow extends javax.swing.JFrame {
                 }
                 else if(role.equals("Manager"))
                 {
-                    if(user_name.equals("admin") && (password.equals("admin")))
-                    {
-                        this.dispose();
-                        new Manager().setVisible(true);
-                    }
-                    else
-                    {
-                        // hiển hị thông báo đỏ không tồn tại tài khoản
-                        jlWarningLogin.setText("Tài khoản không khợp với vai trò hoặc nhập sai mật khẩu");
+                   try {
+                            // Khởi tạo câu truy vấn
+                            String sqlUser = "Select User_ID, [Tài khoản], [Mật khẩu] from [User]";
 
-                        // Hàm thực hiện thay đổi mã xác nhận
-                        int valueChanged = 10000 + rand.nextInt(99999);
-                        while (valueChanged == Integer.parseInt(jlRandomNumber.getText())) {
-                            valueChanged = 10000 + rand.nextInt(99999);
-                        }
-                        jlRandomNumber.setFont(new Font("Segoe UI Emoji", Font.ITALIC, 30));
-                        jlRandomNumber.setText(String.valueOf(valueChanged));
+                            // khởi tại thể hiện của Statement để thực hiện truy vân với cơ sở dữ liệu
+                            Statement st = db.cnt.createStatement();
 
-                        // thiết lập placeholder cho mật khẩu
-                        jpwfPassword.setText("mật khẩu");
-                        jpwfPassword.setFont(new Font("Segoe UI", Font.ITALIC, 12));
-                        jpwfPassword.setForeground(new Color(153, 153, 153));
-                        jpwfPassword.setEchoChar((char)0);
-                    }
+                            // Đọc dữ liệu từ database
+                            ResultSet rsAccount = st.executeQuery(sqlUser);
+
+                            // tạo cờ để duyệt toàn bộ cơ sở dữ liệu để kiểm tra tài khoản có tồn tại hay không
+                            int roleOfManager = 0;
+
+                            // khởi tạo biến lưu User_ID
+                            int userID = -1;
+
+                            // duyệt cơ sở dữ liệu để kiểm tra tài khoản
+                            while(rsAccount.next())
+                            {
+                                // Kiểm tra tài khoản từng hàng, nếu khớp thì thoát vòng lặp
+                                String taiKhoan = rsAccount.getString("Tài khoản");
+                                String matKhau = rsAccount.getString("Mật khẩu");
+                                if(taiKhoan.equals(user_name) && matKhau.equals(password))
+                                {
+                                    userID = rsAccount.getInt("User_ID");
+                                    String sql = "Select [User_ID], [Chức vụ] From Manager Where [User_ID] = %d".formatted(userID);
+                                    Statement sqlCheckUserIDCustomer = db.cnt.createStatement();
+                                    ResultSet rsCheckUserIDCustomer = sqlCheckUserIDCustomer.executeQuery(sql);
+                                    while(rsCheckUserIDCustomer.next())
+                                    {
+                                        if(userID == rsCheckUserIDCustomer.getInt("User_ID"))
+                                        {
+                                            if(rsCheckUserIDCustomer.getString("Chức vụ").equals("Quản lý tài xế"))
+                                            {
+                                                roleOfManager = 1;
+                                            }
+                                            else if(rsCheckUserIDCustomer.getString("Chức vụ").equals("Quản lý xe"))
+                                            {
+                                                roleOfManager = 2;
+                                            }
+                                            else if(rsCheckUserIDCustomer.getString("Chức vụ").equals("Quản lý đơn hàng"))
+                                            {
+                                                roleOfManager = 3;
+                                            }
+                                            break;
+                                        }
+                                    }
+                                    break;
+                                }
+                            }
+                            
+                            if(roleOfManager == 1)
+                            {
+                                new DriverManager(userID, this).setVisible(true);
+                                this.dispose();
+                                setPlaceHolder();
+                            }
+                            else if(roleOfManager == 2)
+                            {
+                                new CarManager(userID, this).setVisible(true);
+                                this.dispose();
+                                setPlaceHolder();
+                            }
+                            else if(roleOfManager == 3)
+                            {
+                                new TripManager(userID, this).setVisible(true);
+                                this.dispose();
+                                setPlaceHolder();
+                            }
+                            else
+                            {
+                                // hiển hị thông báo đỏ không tồn tại tài khoản
+                                jlWarningLogin.setText("Tài khoản không khớp với vai trò hoặc nhập sai mật khẩu");
+
+                                // Hàm thực hiện thay đổi mã xác nhận
+                                int valueChanged = 10000 + rand.nextInt(99999);
+                                while (valueChanged == Integer.parseInt(jlRandomNumber.getText())) {
+                                    valueChanged = 10000 + rand.nextInt(99999);
+                                }
+                                jlRandomNumber.setFont(new Font("Segoe UI Emoji", Font.ITALIC, 30));
+                                jlRandomNumber.setText(String.valueOf(valueChanged));
+
+                                // thiết lập placeholder cho mật khẩu
+                                jpwfPassword.setText("mật khẩu");
+                                jpwfPassword.setFont(new Font("Segoe UI", Font.ITALIC, 12));
+                                jpwfPassword.setForeground(new Color(153, 153, 153));
+                                jpwfPassword.setEchoChar((char)0);
+                            }
+                       }
+                    catch (SQLException ex) {
+                        Logger.getLogger(loginWindow.class.getName()).log(Level.SEVERE, null, ex);
+                    }         
                 }
             }
             else
@@ -844,6 +935,7 @@ public class loginWindow extends javax.swing.JFrame {
         // kiểm tra người thao tác đã nhập mã xác thực chưa, nếu rồi thì tiến hành các bước tiếp
         if (jtfIdentifyCode.getText().equals("mã xác thực")) {
             jtfIdentifyCode.setText("");
+            jlWarningIdentityCode.setText("");
             jtfIdentifyCode.setFont(new Font("Segoe UI", Font.PLAIN, 18));
             jtfIdentifyCode.setForeground(new Color(0, 0, 0));
         }
@@ -865,6 +957,7 @@ public class loginWindow extends javax.swing.JFrame {
         // kiểm tra người thao tác đã nhập tài khoản chưa, nếu rồi thì tiến hành các bước tiếp
         if (jtfAccount.getText().equals("tài khoản")) {
             jtfAccount.setText("");
+            jlbWarningAccount.setText("");
             jtfAccount.setFont(new Font("Segoe UI", Font.PLAIN, 18));
             jtfAccount.setForeground(new Color(0, 0, 0));
         }
@@ -880,6 +973,30 @@ public class loginWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jtfAccountFocusLost
 
+    private void jbtnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnExitActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jbtnExitActionPerformed
+
+    
+    public void setPlaceHolder()
+    {
+        // set place holder cho mã xác thực
+        jtfIdentifyCode.setText("mã xác thực");
+        jtfIdentifyCode.setFont(new Font("Segoe UI", Font.ITALIC, 12));
+        jtfIdentifyCode.setForeground(new Color(153, 153, 153));
+        
+        // set place holder cho tài khoản
+        jtfAccount.setText("tài khoản");
+        jtfAccount.setFont(new Font("Segoe UI", Font.ITALIC, 12));
+        jtfAccount.setForeground(new Color(153, 153, 153));
+        
+        // set place holder cho mât khẩu
+        jpwfPassword.setText("mật khẩu");
+        jpwfPassword.setFont(new Font("Segoe UI", Font.ITALIC, 12));
+        jpwfPassword.setForeground(new Color(153, 153, 153));
+        jpwfPassword.setEchoChar((char)0);
+    }
                               
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -901,6 +1018,7 @@ public class loginWindow extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JButton jbtnChangeRandomNumber;
+    private javax.swing.JButton jbtnExit;
     private javax.swing.JButton jbtnLogin;
     private javax.swing.JButton jbtnRegister;
     private javax.swing.JLabel jl1;

@@ -108,7 +108,7 @@
                                                   </Group>
                                                   <Component id="jLabel3" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
                                               </Group>
-                                              <EmptySpace pref="50" max="32767" attributes="0"/>
+                                              <EmptySpace pref="66" max="32767" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="jcbGen" min="-2" max="-2" attributes="0"/>
                                                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
@@ -256,7 +256,7 @@
               <Color blue="ff" green="cc" red="cc" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="14" style="2"/>
+              <Font name="Segoe UI" size="14" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="H&#x1ecd; t&#xea;n"/>
             <Property name="opaque" type="boolean" value="true"/>
@@ -268,7 +268,7 @@
               <Color blue="ff" green="cc" red="cc" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="14" style="2"/>
+              <Font name="Segoe UI" size="14" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="S&#x1ed1; ch&#x1ee9;ng minh th&#x1b0;"/>
             <Property name="opaque" type="boolean" value="true"/>
@@ -280,7 +280,7 @@
               <Color blue="ff" green="cc" red="cc" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="14" style="2"/>
+              <Font name="Segoe UI" size="14" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="S&#x1ed1; &#x111;i&#x1ec7;n tho&#x1ea1;i"/>
             <Property name="opaque" type="boolean" value="true"/>
@@ -303,7 +303,7 @@
               <Color blue="ff" green="cc" red="cc" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="14" style="2"/>
+              <Font name="Segoe UI" size="14" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="&#x110;&#x1ecb;a ch&#x1ec9;"/>
             <Property name="opaque" type="boolean" value="true"/>
@@ -407,6 +407,9 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jtfNameFocusGained"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jlWarningName">
           <Properties>
@@ -428,6 +431,9 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jtfIdentityNumberFocusGained"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jlWarningIdentityNumber">
           <Properties>
@@ -450,6 +456,7 @@
             </Property>
           </Properties>
           <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jtfNumberPhoneFocusGained"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfNumberPhoneActionPerformed"/>
           </Events>
         </Component>
@@ -473,6 +480,9 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jtfAddressFocusGained"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jlWarningAddress">
           <Properties>
@@ -494,6 +504,9 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jtfEmailFocusGained"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel12">
           <Properties>
@@ -501,7 +514,7 @@
               <Color blue="ff" green="cc" red="cc" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="14" style="2"/>
+              <Font name="Segoe UI" size="14" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Email"/>
             <Property name="opaque" type="boolean" value="true"/>
@@ -723,7 +736,7 @@
               <Color blue="ff" green="cc" red="cc" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="14" style="2"/>
+              <Font name="Segoe UI" size="14" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Ng&#xe0;y th&#xe1;ng n&#x103;m sinh"/>
             <Property name="opaque" type="boolean" value="true"/>
@@ -735,7 +748,7 @@
               <Color blue="ff" green="cc" red="cc" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="14" style="2"/>
+              <Font name="Segoe UI" size="14" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Gi&#x1edb;i t&#xed;nh"/>
             <Property name="opaque" type="boolean" value="true"/>
