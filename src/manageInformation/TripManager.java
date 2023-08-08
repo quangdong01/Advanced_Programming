@@ -280,6 +280,12 @@ public class TripManager extends javax.swing.JFrame {
         jlCheckOK = new javax.swing.JLabel();
         jlSuccess = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtWaitTrip = new javax.swing.JTable();
+        jbtnAccept = new javax.swing.JButton();
+        jbtnCancel = new javax.swing.JButton();
+        jlAccept = new javax.swing.JLabel();
+        jlCancel = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
@@ -641,17 +647,44 @@ public class TripManager extends javax.swing.JFrame {
         jTabbedPaneAll.addTab("tab2", jPanel4);
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 930, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 779, Short.MAX_VALUE)
-        );
+        jtWaitTrip.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jtWaitTrip.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jScrollPane1.setViewportView(jtWaitTrip);
+
+        jPanel5.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 900, 690));
+
+        jbtnAccept.setBackground(new java.awt.Color(51, 51, 255));
+        jbtnAccept.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jbtnAccept.setForeground(new java.awt.Color(255, 255, 255));
+        jbtnAccept.setText("Xác nhận");
+        jbtnAccept.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbtnAccept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnAcceptActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jbtnAccept, new org.netbeans.lib.awtextra.AbsoluteConstraints(317, 6, -1, 31));
+
+        jbtnCancel.setBackground(new java.awt.Color(51, 51, 255));
+        jbtnCancel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jbtnCancel.setForeground(new java.awt.Color(255, 255, 255));
+        jbtnCancel.setText("Hủy đơn");
+        jbtnCancel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel5.add(jbtnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(544, 6, -1, 31));
+        jPanel5.add(jlAccept, new org.netbeans.lib.awtextra.AbsoluteConstraints(317, 43, 202, 20));
+        jPanel5.add(jlCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(544, 43, 189, 20));
 
         jTabbedPaneAll.addTab("tab3", jPanel5);
 
@@ -800,6 +833,7 @@ public class TripManager extends javax.swing.JFrame {
 
     private void jlchangePasswordTripManagerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlchangePasswordTripManagerMouseClicked
         // TODO add your handling code here:
+        jlSuccess.setVisible(false);
         jTabbedPaneAll.setSelectedIndex(1);
     }//GEN-LAST:event_jlchangePasswordTripManagerMouseClicked
 
@@ -1019,6 +1053,10 @@ public class TripManager extends javax.swing.JFrame {
         jlShowPersonalInfor.setBackground(new Color(242,242,242));
     }//GEN-LAST:event_jlShowPersonalInforMouseExited
 
+    private void jbtnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAcceptActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnAcceptActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1048,6 +1086,7 @@ public class TripManager extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -1056,10 +1095,14 @@ public class TripManager extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JTabbedPane jTabbedPaneAll;
+    private javax.swing.JButton jbtnAccept;
+    private javax.swing.JButton jbtnCancel;
     private javax.swing.JButton jbtnSubmit;
     private javax.swing.JCheckBox jcbConfirm;
+    private javax.swing.JLabel jlAccept;
     private javax.swing.JLabel jlAddress;
     private javax.swing.JLabel jlAvatarManager;
+    private javax.swing.JLabel jlCancel;
     private javax.swing.JLabel jlCancelTrip;
     private javax.swing.JLabel jlCheckOK;
     private javax.swing.JLabel jlConfirm;
@@ -1085,5 +1128,6 @@ public class TripManager extends javax.swing.JFrame {
     private javax.swing.JPasswordField jpwfConfirmPassword;
     private javax.swing.JPasswordField jpwfNewPassword;
     private javax.swing.JPasswordField jpwfOldPassword;
+    private javax.swing.JTable jtWaitTrip;
     // End of variables declaration//GEN-END:variables
 }

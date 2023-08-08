@@ -11,8 +11,11 @@ import java.sql.Timestamp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import javax.swing.JTabbedPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 import login.loginWindow;
 import login.registerWindow;
 
@@ -25,7 +28,6 @@ public class User extends javax.swing.JFrame {
     public String username;
     public String password;
     
-    
     public User(int userID, loginWindow loginwindow) {
         this.loginwindow = loginwindow;
         this.userID = userID;
@@ -37,6 +39,10 @@ public class User extends javax.swing.JFrame {
         setFirstInformation();
         setSecondInformation();
         setForthInformation();
+        setSixthInformation();
+        setSeventhInformation();
+        setEighthInformation();
+        setNinthInformation();
         
     }
     
@@ -217,7 +223,210 @@ public class User extends javax.swing.JFrame {
         }
     }
      
+    public void setSixthInformation()
+    {
+        // tạo thể hiện cho defaulttablemodol
+        DefaultTableModel defaultTableModel = new DefaultTableModel();
+        jtWaitTrip.setModel(defaultTableModel);
+        
+        // thêm các cột cần thiết
+        defaultTableModel.addColumn("Trip_ID");
+        defaultTableModel.addColumn("Điểm xuất phát");
+        defaultTableModel.addColumn("Điểm kết thúc");
+        defaultTableModel.addColumn("Thời gian đặt");
+        defaultTableModel.addColumn("Thời gian bắt đầu");
+        defaultTableModel.addColumn("Thời gian kết thúc");
+        defaultTableModel.addColumn("Distance");
+        defaultTableModel.addColumn("Weight");
+        defaultTableModel.addColumn("Cost");
+        
+        jtWaitTrip.getColumnModel().getColumn(0).setPreferredWidth(50);
+        jtWaitTrip.getColumnModel().getColumn(1).setPreferredWidth(100);
+        jtWaitTrip.getColumnModel().getColumn(2).setPreferredWidth(100);
+        jtWaitTrip.getColumnModel().getColumn(3).setPreferredWidth(100);
+        jtWaitTrip.getColumnModel().getColumn(4).setPreferredWidth(100);
+        jtWaitTrip.getColumnModel().getColumn(5).setPreferredWidth(100);
+        jtWaitTrip.getColumnModel().getColumn(6).setPreferredWidth(30);
+        jtWaitTrip.getColumnModel().getColumn(7).setPreferredWidth(30);
+        jtWaitTrip.getColumnModel().getColumn(8).setPreferredWidth(30);
+
+        try
+        {
+            // truy vấn dữ liệu từ sql server để lấy danh sách thông tin về xe
+            String getListTrip = "Select [Trip_ID], [Điểm xuất phát], [Điểm kết thúc], [Thời gian đặt hàng], [Thời gian bắt đầu], [Thời gian kết thúc], [Tổng quãng đường], [Khối lượng hàng], [Phí dịch vụ]"
+                    + " From Trips Where Customer_ID = ? And [Trạng thái] = ?";
+            PreparedStatement sqlgetListTrip = this.loginwindow.db.cnt.prepareStatement(getListTrip);
+            sqlgetListTrip.setInt(1, this.customerID);
+            sqlgetListTrip.setString(2, "Đang chờ");
+            
+            // lấy danh sách xe
+            ResultSet rs = sqlgetListTrip.executeQuery();
+            
+            while(rs.next())
+            {
+                defaultTableModel.addRow(new Object[]{rs.getString("Trip_ID"), rs.getString("Điểm xuất phát"), rs.getString("Điểm kết thúc"), rs.getString("Thời gian đặt hàng"), 
+                rs.getString("Thời gian bắt đầu"), rs.getString("Thời gian kết thúc"), rs.getString("Tổng quãng đường"), rs.getString("Khối lượng hàng"), rs.getString("Phí dịch vụ")});
+            }
+        }
+        catch(SQLException ex)
+        {
+            Logger.getLogger(registerWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+    }
      
+    public void setSeventhInformation()
+    {
+        // tạo thể hiện cho defaulttablemodol
+        DefaultTableModel defaultTableModel = new DefaultTableModel();
+        jtShippingTrip.setModel(defaultTableModel);
+        
+        // thêm các cột cần thiết
+        defaultTableModel.addColumn("Trip_ID");
+        defaultTableModel.addColumn("Điểm xuất phát");
+        defaultTableModel.addColumn("Điểm kết thúc");
+        defaultTableModel.addColumn("Thời gian đặt");
+        defaultTableModel.addColumn("Thời gian bắt đầu");
+        defaultTableModel.addColumn("Thời gian kết thúc");
+        defaultTableModel.addColumn("Distance");
+        defaultTableModel.addColumn("Weight");
+        defaultTableModel.addColumn("Cost");
+        
+        jtShippingTrip.getColumnModel().getColumn(0).setPreferredWidth(50);
+        jtShippingTrip.getColumnModel().getColumn(1).setPreferredWidth(100);
+        jtShippingTrip.getColumnModel().getColumn(2).setPreferredWidth(100);
+        jtShippingTrip.getColumnModel().getColumn(3).setPreferredWidth(100);
+        jtShippingTrip.getColumnModel().getColumn(4).setPreferredWidth(100);
+        jtShippingTrip.getColumnModel().getColumn(5).setPreferredWidth(100);
+        jtShippingTrip.getColumnModel().getColumn(6).setPreferredWidth(30);
+        jtShippingTrip.getColumnModel().getColumn(7).setPreferredWidth(30);
+        jtShippingTrip.getColumnModel().getColumn(8).setPreferredWidth(30);
+        
+        try
+        {
+            // truy vấn dữ liệu từ sql server để lấy danh sách thông tin về xe
+            String getListTrip = "Select [Trip_ID], [Điểm xuất phát], [Điểm kết thúc], [Thời gian đặt hàng], [Thời gian bắt đầu], [Thời gian kết thúc], [Tổng quãng đường], [Khối lượng hàng], [Phí dịch vụ]"
+                    + " From Trips Where Customer_ID = ? And [Trạng thái] = ?";
+            PreparedStatement sqlgetListTrip = this.loginwindow.db.cnt.prepareStatement(getListTrip);
+            sqlgetListTrip.setInt(1, this.customerID);
+            sqlgetListTrip.setString(2, "Đang giao");
+            
+            // lấy danh sách xe
+            ResultSet rs = sqlgetListTrip.executeQuery();
+            
+            while(rs.next())
+            {
+                defaultTableModel.addRow(new Object[]{rs.getString("Trip_ID"), rs.getString("Điểm xuất phát"), rs.getString("Điểm kết thúc"), rs.getString("Thời gian đặt hàng"), 
+                rs.getString("Thời gian bắt đầu"), rs.getString("Thời gian kết thúc"), rs.getString("Tổng quãng đường"), rs.getString("Khối lượng hàng"), rs.getString("Phí dịch vụ")});
+            }
+        }
+        catch(SQLException ex)
+        {
+            Logger.getLogger(registerWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+    }
+    
+    public void setEighthInformation()
+    {
+        // tạo thể hiện cho defaulttablemodol
+        DefaultTableModel defaultTableModel = new DefaultTableModel();
+        jtCompleteTrip.setModel(defaultTableModel);
+        
+        // thêm các cột cần thiết
+        defaultTableModel.addColumn("Trip_ID");
+        defaultTableModel.addColumn("Điểm xuất phát");
+        defaultTableModel.addColumn("Điểm kết thúc");
+        defaultTableModel.addColumn("Thời gian đặt");
+        defaultTableModel.addColumn("Thời gian bắt đầu");
+        defaultTableModel.addColumn("Thời gian kết thúc");
+        defaultTableModel.addColumn("Distance");
+        defaultTableModel.addColumn("Weight");
+        defaultTableModel.addColumn("Cost");
+        
+        jtCompleteTrip.getColumnModel().getColumn(0).setPreferredWidth(50);
+        jtCompleteTrip.getColumnModel().getColumn(1).setPreferredWidth(100);
+        jtCompleteTrip.getColumnModel().getColumn(2).setPreferredWidth(100);
+        jtCompleteTrip.getColumnModel().getColumn(3).setPreferredWidth(100);
+        jtCompleteTrip.getColumnModel().getColumn(4).setPreferredWidth(100);
+        jtCompleteTrip.getColumnModel().getColumn(5).setPreferredWidth(100);
+        jtCompleteTrip.getColumnModel().getColumn(6).setPreferredWidth(30);
+        jtCompleteTrip.getColumnModel().getColumn(7).setPreferredWidth(30);
+        jtCompleteTrip.getColumnModel().getColumn(8).setPreferredWidth(30);
+        
+        try
+        {
+            // truy vấn dữ liệu từ sql server để lấy danh sách thông tin về xe
+            String getListTrip = "Select [Trip_ID], [Điểm xuất phát], [Điểm kết thúc], [Thời gian đặt hàng], [Thời gian bắt đầu], [Thời gian kết thúc], [Tổng quãng đường], [Khối lượng hàng], [Phí dịch vụ]"
+                    + " From Trips Where Customer_ID = ? And [Trạng thái] = ?";
+            PreparedStatement sqlgetListTrip = this.loginwindow.db.cnt.prepareStatement(getListTrip);
+            sqlgetListTrip.setInt(1, this.customerID);
+            sqlgetListTrip.setString(2, "Thành công");
+            
+            // lấy danh sách xe
+            ResultSet rs = sqlgetListTrip.executeQuery();
+            
+            while(rs.next())
+            {
+                defaultTableModel.addRow(new Object[]{rs.getString("Trip_ID"), rs.getString("Điểm xuất phát"), rs.getString("Điểm kết thúc"), rs.getString("Thời gian đặt hàng"), 
+                rs.getString("Thời gian bắt đầu"), rs.getString("Thời gian kết thúc"), rs.getString("Tổng quãng đường"), rs.getString("Khối lượng hàng"), rs.getString("Phí dịch vụ")});
+            }
+        }
+        catch(SQLException ex)
+        {
+            Logger.getLogger(registerWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+    }
+    
+    public void setNinthInformation()
+    {
+        // tạo thể hiện cho defaulttablemodol
+        DefaultTableModel defaultTableModel = new DefaultTableModel();
+        jtCancelTrip.setModel(defaultTableModel);
+        
+        // thêm các cột cần thiết
+        defaultTableModel.addColumn("Trip_ID");
+        defaultTableModel.addColumn("Điểm xuất phát");
+        defaultTableModel.addColumn("Điểm kết thúc");
+        defaultTableModel.addColumn("Thời gian đặt");
+        defaultTableModel.addColumn("Thời gian bắt đầu");
+        defaultTableModel.addColumn("Thời gian kết thúc");
+        defaultTableModel.addColumn("Distance");
+        defaultTableModel.addColumn("Weight");
+        defaultTableModel.addColumn("Cost");
+        
+        jtCancelTrip.getColumnModel().getColumn(0).setPreferredWidth(50);
+        jtCancelTrip.getColumnModel().getColumn(1).setPreferredWidth(100);
+        jtCancelTrip.getColumnModel().getColumn(2).setPreferredWidth(100);
+        jtCancelTrip.getColumnModel().getColumn(3).setPreferredWidth(100);
+        jtCancelTrip.getColumnModel().getColumn(4).setPreferredWidth(100);
+        jtCancelTrip.getColumnModel().getColumn(5).setPreferredWidth(100);
+        jtCancelTrip.getColumnModel().getColumn(6).setPreferredWidth(30);
+        jtCancelTrip.getColumnModel().getColumn(7).setPreferredWidth(30);
+        jtCancelTrip.getColumnModel().getColumn(8).setPreferredWidth(30);
+        
+        try
+        {
+            // truy vấn dữ liệu từ sql server để lấy danh sách thông tin về xe
+            String getListTrip = "Select [Trip_ID], [Điểm xuất phát], [Điểm kết thúc], [Thời gian đặt hàng], [Thời gian bắt đầu], [Thời gian kết thúc], [Tổng quãng đường], [Khối lượng hàng], [Phí dịch vụ]"
+                    + " From Trips Where Customer_ID = ? And [Trạng thái] = ?";
+            PreparedStatement sqlgetListTrip = this.loginwindow.db.cnt.prepareStatement(getListTrip);
+            sqlgetListTrip.setInt(1, this.customerID);
+            sqlgetListTrip.setString(2, "Đã hủy");
+            
+            // lấy danh sách xe
+            ResultSet rs = sqlgetListTrip.executeQuery();
+            
+            while(rs.next())
+            {
+                defaultTableModel.addRow(new Object[]{rs.getString("Trip_ID"), rs.getString("Điểm xuất phát"), rs.getString("Điểm kết thúc"), rs.getString("Thời gian đặt hàng"), 
+                rs.getString("Thời gian bắt đầu"), rs.getString("Thời gian kết thúc"), rs.getString("Tổng quãng đường"), rs.getString("Khối lượng hàng"), rs.getString("Phí dịch vụ")});
+            }
+        }
+        catch(SQLException ex)
+        {
+            Logger.getLogger(registerWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+    }
+    
     public void editUser(int userID)
     {
         jcbConfirmEditUser.setSelected(false);
@@ -280,14 +489,14 @@ public class User extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jlTripBook = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
-        jbInformationUser4 = new javax.swing.JLabel();
+        jlWaitTrip = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
-        jbInformationUser6 = new javax.swing.JLabel();
+        jlCompleteTrip = new javax.swing.JLabel();
         jSeparator10 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
-        jbInformationUser7 = new javax.swing.JLabel();
-        jbInformationUser5 = new javax.swing.JLabel();
+        jlShippingTrip = new javax.swing.JLabel();
+        jlCancelTrip = new javax.swing.JLabel();
         jSeparator11 = new javax.swing.JSeparator();
         jTabbedPaneUser = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
@@ -395,7 +604,21 @@ public class User extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtWaitTrip = new javax.swing.JTable();
+        jbtnDeleteTrip = new javax.swing.JButton();
+        jlWarning = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtShippingTrip = new javax.swing.JTable();
+        jLabel27 = new javax.swing.JLabel();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel28 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jtCompleteTrip = new javax.swing.JTable();
+        jPanel10 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jtCancelTrip = new javax.swing.JTable();
+        jLabel29 = new javax.swing.JLabel();
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sourceIMG/resource/logo VIN.png"))); // NOI18N
 
@@ -554,35 +777,87 @@ public class User extends javax.swing.JFrame {
             }
         });
 
-        jbInformationUser4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jbInformationUser4.setForeground(new java.awt.Color(51, 102, 255));
-        jbInformationUser4.setText("Đơn hàng chờ xác nhận");
-        jbInformationUser4.setToolTipText("");
-        jbInformationUser4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jbInformationUser4.setOpaque(true);
+        jlWaitTrip.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jlWaitTrip.setForeground(new java.awt.Color(51, 102, 255));
+        jlWaitTrip.setText("Đơn hàng chờ xác nhận");
+        jlWaitTrip.setToolTipText("");
+        jlWaitTrip.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlWaitTrip.setOpaque(true);
+        jlWaitTrip.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jlWaitTripMouseMoved(evt);
+            }
+        });
+        jlWaitTrip.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlWaitTripMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jlWaitTripMouseExited(evt);
+            }
+        });
 
-        jbInformationUser6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jbInformationUser6.setForeground(new java.awt.Color(51, 102, 255));
-        jbInformationUser6.setText("Đơn hàng giao thành công");
-        jbInformationUser6.setToolTipText("");
-        jbInformationUser6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jbInformationUser6.setOpaque(true);
+        jlCompleteTrip.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jlCompleteTrip.setForeground(new java.awt.Color(51, 102, 255));
+        jlCompleteTrip.setText("Đơn hàng giao thành công");
+        jlCompleteTrip.setToolTipText("");
+        jlCompleteTrip.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlCompleteTrip.setOpaque(true);
+        jlCompleteTrip.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jlCompleteTripMouseMoved(evt);
+            }
+        });
+        jlCompleteTrip.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlCompleteTripMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jlCompleteTripMouseExited(evt);
+            }
+        });
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sourceIMG/resource/logovantai.png"))); // NOI18N
 
-        jbInformationUser7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jbInformationUser7.setForeground(new java.awt.Color(51, 102, 255));
-        jbInformationUser7.setText("Đơn hàng đang giao");
-        jbInformationUser7.setToolTipText("");
-        jbInformationUser7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jbInformationUser7.setOpaque(true);
+        jlShippingTrip.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jlShippingTrip.setForeground(new java.awt.Color(51, 102, 255));
+        jlShippingTrip.setText("Đơn hàng đang giao");
+        jlShippingTrip.setToolTipText("");
+        jlShippingTrip.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlShippingTrip.setOpaque(true);
+        jlShippingTrip.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jlShippingTripMouseMoved(evt);
+            }
+        });
+        jlShippingTrip.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlShippingTripMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jlShippingTripMouseExited(evt);
+            }
+        });
 
-        jbInformationUser5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jbInformationUser5.setForeground(new java.awt.Color(51, 102, 255));
-        jbInformationUser5.setText("Đơn hàng đã hủy");
-        jbInformationUser5.setToolTipText("");
-        jbInformationUser5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jbInformationUser5.setOpaque(true);
+        jlCancelTrip.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jlCancelTrip.setForeground(new java.awt.Color(51, 102, 255));
+        jlCancelTrip.setText("Đơn hàng đã hủy");
+        jlCancelTrip.setToolTipText("");
+        jlCancelTrip.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlCancelTrip.setOpaque(true);
+        jlCancelTrip.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jlCancelTripMouseMoved(evt);
+            }
+        });
+        jlCancelTrip.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlCancelTripMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jlCancelTripMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -637,10 +912,10 @@ public class User extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jbInformationUser4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbInformationUser6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbInformationUser7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbInformationUser5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jlWaitTrip, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlCompleteTrip, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlShippingTrip, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlCancelTrip, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jSeparator11)))
@@ -687,19 +962,19 @@ public class User extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbInformationUser4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlWaitTrip, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbInformationUser7, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlShippingTrip, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbInformationUser6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlCompleteTrip, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbInformationUser5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlCancelTrip, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
@@ -1262,6 +1537,7 @@ public class User extends javax.swing.JFrame {
         jbtnTripBook.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jbtnTripBook.setForeground(new java.awt.Color(255, 255, 255));
         jbtnTripBook.setText("Đặt hàng");
+        jbtnTripBook.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtnTripBook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnTripBookActionPerformed(evt);
@@ -1288,7 +1564,7 @@ public class User extends javax.swing.JFrame {
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtWaitTrip.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -1299,11 +1575,140 @@ public class User extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jtWaitTrip.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jScrollPane1.setViewportView(jtWaitTrip);
 
         jPanel7.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 900, 710));
 
+        jbtnDeleteTrip.setBackground(new java.awt.Color(51, 51, 255));
+        jbtnDeleteTrip.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jbtnDeleteTrip.setForeground(new java.awt.Color(255, 255, 255));
+        jbtnDeleteTrip.setText("Hủy đơn");
+        jbtnDeleteTrip.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbtnDeleteTrip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnDeleteTripActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jbtnDeleteTrip, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 18, -1, -1));
+
+        jlWarning.setForeground(new java.awt.Color(204, 0, 0));
+        jPanel7.add(jlWarning, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 30, 240, 20));
+
         jTabbedPaneUser.addTab("tab6", jPanel7);
+
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jtShippingTrip.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jtShippingTrip);
+
+        jPanel8.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 79, 908, 714));
+
+        jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel27.setText("ĐƠN HÀNG ĐANG GIAO");
+        jPanel8.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(356, 20, -1, -1));
+
+        jTabbedPaneUser.addTab("tab7", jPanel8);
+
+        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel28.setText("ĐƠN HÀNG GIAO THÀNH CÔNG");
+
+        jtCompleteTrip.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jtCompleteTrip);
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addContainerGap(329, Short.MAX_VALUE)
+                .addComponent(jLabel28)
+                .addGap(312, 312, 312))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jLabel28)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 718, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPaneUser.addTab("tab8", jPanel9);
+
+        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
+
+        jtCancelTrip.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(jtCancelTrip);
+
+        jLabel29.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel29.setText("ĐƠN HÀNG ĐÃ HỦY");
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                .addContainerGap(375, Short.MAX_VALUE)
+                .addComponent(jLabel29)
+                .addGap(371, 371, 371))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jLabel29)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 716, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPaneUser.addTab("tab9", jPanel10);
 
         getContentPane().add(jTabbedPaneUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 920, 830));
 
@@ -2030,8 +2435,8 @@ public class User extends javax.swing.JFrame {
                         }
                     }                    
                     this.enable(false);
-                    new Bill(this, datetime, tripID, startp, destp, intdistances, intwei, pay).setVisible(true);
-                    
+                    setSixthInformation();
+                    new Bill(this, datetime, tripID, startp, destp, intdistances, intwei, pay).setVisible(true);                   
                     // set place holder
                     jtfStartPoint.setText("điểm xuất phát");
                     jtfStartPoint.setFont(new Font("Segoe UI", Font.ITALIC, 12));
@@ -2058,6 +2463,107 @@ public class User extends javax.swing.JFrame {
         }     
     }//GEN-LAST:event_jbtnTripBookActionPerformed
 
+    private void jbtnDeleteTripActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnDeleteTripActionPerformed
+        // TODO add your handling code here:
+        
+        String updateTripStatus = "Update [Trips] "
+        + "Set [Trạng thái] = ?"
+        + " Where Trip_ID = ?";
+        
+        try
+        {
+            int row = jtWaitTrip.getSelectedRow();
+            
+            if(row == -1)
+            {
+                jlWarning.setText("row = -1");
+            }
+            else
+            {
+                jlWarning.setText("");
+                int stripID = Integer.parseInt(String.valueOf(jtWaitTrip.getValueAt(row, 0)));
+                
+                // tạo thể hiện
+                PreparedStatement sqlupdateTripStatus = this.loginwindow.db.cnt.prepareStatement(updateTripStatus);
+
+                sqlupdateTripStatus.setString(1, "Đã hủy");
+                sqlupdateTripStatus.setInt(2, stripID);
+
+                // thực hiện truy vấn
+                sqlupdateTripStatus.executeUpdate();
+                
+                setSixthInformation();
+                setNinthInformation();  
+            }
+        }
+        catch(SQLException ex)
+        {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jbtnDeleteTripActionPerformed
+
+    private void jlWaitTripMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlWaitTripMouseClicked
+        // TODO add your handling code here:
+        jTabbedPaneUser.setSelectedIndex(5);
+    }//GEN-LAST:event_jlWaitTripMouseClicked
+
+    private void jlWaitTripMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlWaitTripMouseExited
+        // TODO add your handling code here:
+        jlWaitTrip.setBackground(new Color(242,242,242));
+    }//GEN-LAST:event_jlWaitTripMouseExited
+
+    private void jlWaitTripMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlWaitTripMouseMoved
+        // TODO add your handling code here:
+        jlWaitTrip.setBackground(new Color(255,255,255));
+    }//GEN-LAST:event_jlWaitTripMouseMoved
+
+    private void jlShippingTripMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlShippingTripMouseClicked
+        // TODO add your handling code here:
+        jTabbedPaneUser.setSelectedIndex(6);
+        
+    }//GEN-LAST:event_jlShippingTripMouseClicked
+
+    private void jlShippingTripMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlShippingTripMouseExited
+        // TODO add your handling code here:
+        jlShippingTrip.setBackground(new Color(242,242,242));
+    }//GEN-LAST:event_jlShippingTripMouseExited
+
+    private void jlShippingTripMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlShippingTripMouseMoved
+        // TODO add your handling code here:
+        jlShippingTrip.setBackground(new Color(255,255,255));
+    }//GEN-LAST:event_jlShippingTripMouseMoved
+
+    private void jlCompleteTripMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlCompleteTripMouseClicked
+        // TODO add your handling code here:
+        jTabbedPaneUser.setSelectedIndex(7);
+    }//GEN-LAST:event_jlCompleteTripMouseClicked
+
+    private void jlCompleteTripMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlCompleteTripMouseExited
+        // TODO add your handling code here:
+        jlCompleteTrip.setBackground(new Color(242,242,242));
+    }//GEN-LAST:event_jlCompleteTripMouseExited
+
+    private void jlCompleteTripMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlCompleteTripMouseMoved
+        // TODO add your handling code here:
+        jlCompleteTrip.setBackground(new Color(255,255,255));
+    }//GEN-LAST:event_jlCompleteTripMouseMoved
+
+    private void jlCancelTripMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlCancelTripMouseClicked
+        // TODO add your handling code here:
+        jTabbedPaneUser.setSelectedIndex(8);
+    }//GEN-LAST:event_jlCancelTripMouseClicked
+
+    private void jlCancelTripMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlCancelTripMouseExited
+        // TODO add your handling code here:
+        jlCancelTrip.setBackground(new Color(242,242,242));
+    }//GEN-LAST:event_jlCancelTripMouseExited
+
+    private void jlCancelTripMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlCancelTripMouseMoved
+        // TODO add your handling code here:
+        jlCancelTrip.setBackground(new Color(255,255,255));
+    }//GEN-LAST:event_jlCancelTripMouseMoved
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -2078,6 +2584,9 @@ public class User extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
@@ -2093,6 +2602,7 @@ public class User extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -2100,7 +2610,12 @@ public class User extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator11;
@@ -2117,11 +2632,7 @@ public class User extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTabbedPane jTabbedPaneUser;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JLabel jbInformationUser4;
-    private javax.swing.JLabel jbInformationUser5;
-    private javax.swing.JLabel jbInformationUser6;
-    private javax.swing.JLabel jbInformationUser7;
+    private javax.swing.JButton jbtnDeleteTrip;
     private javax.swing.JButton jbtnSubmit;
     private javax.swing.JButton jbtnTripBook;
     private javax.swing.JButton jbtnUpdate;
@@ -2136,6 +2647,7 @@ public class User extends javax.swing.JFrame {
     private javax.swing.JLabel jl5sao;
     private javax.swing.JLabel jlAddress;
     private javax.swing.JLabel jlAvatarCustomer;
+    private javax.swing.JLabel jlCancelTrip;
     private javax.swing.JLabel jlCarID;
     private javax.swing.JLabel jlCarID1;
     private javax.swing.JLabel jlCarID2;
@@ -2143,6 +2655,7 @@ public class User extends javax.swing.JFrame {
     private javax.swing.JLabel jlCarID4;
     private javax.swing.JLabel jlChangePassword;
     private javax.swing.JLabel jlCheckOK;
+    private javax.swing.JLabel jlCompleteTrip;
     private javax.swing.JLabel jlConfirm;
     private javax.swing.JLabel jlConfirmBook;
     private javax.swing.JLabel jlDayOfBirth;
@@ -2165,6 +2678,7 @@ public class User extends javax.swing.JFrame {
     private javax.swing.JLabel jlRequest;
     private javax.swing.JLabel jlRole;
     private javax.swing.JLabel jlSex;
+    private javax.swing.JLabel jlShippingTrip;
     private javax.swing.JLabel jlShowName;
     private javax.swing.JLabel jlStartPoint;
     private javax.swing.JLabel jlSuccess;
@@ -2173,6 +2687,8 @@ public class User extends javax.swing.JFrame {
     private javax.swing.JLabel jlTripBook;
     private javax.swing.JLabel jlUpdateInformationUser;
     private javax.swing.JLabel jlUserID;
+    private javax.swing.JLabel jlWaitTrip;
+    private javax.swing.JLabel jlWarning;
     private javax.swing.JLabel jlWarningConfirm;
     private javax.swing.JLabel jlWarningEmail;
     private javax.swing.JLabel jlWarningIdentityNumber;
@@ -2182,6 +2698,10 @@ public class User extends javax.swing.JFrame {
     private javax.swing.JPasswordField jpwfConfirmPassword;
     private javax.swing.JPasswordField jpwfNewPassword;
     private javax.swing.JPasswordField jpwfOldPassword;
+    private javax.swing.JTable jtCancelTrip;
+    private javax.swing.JTable jtCompleteTrip;
+    private javax.swing.JTable jtShippingTrip;
+    private javax.swing.JTable jtWaitTrip;
     private javax.swing.JTextField jtfDestinationPoint;
     private javax.swing.JTextField jtfDistanceSum;
     private javax.swing.JTextField jtfEditAddress;

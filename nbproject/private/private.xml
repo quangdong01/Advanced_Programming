@@ -5,10 +5,8 @@
         <group>
             <file>file:/D:/QuangDong/NetBean_Project/Vehicle%20and%20Driver%20Management/src/login/loginWindow.java</file>
             <file>file:/D:/QuangDong/NetBean_Project/Vehicle%20and%20Driver%20Management/src/manageInformation/User.java</file>
-            <file>file:/D:/QuangDong/NetBean_Project/Vehicle%20and%20Driver%20Management/src/login/additionalInformation.java</file>
-            <file>file:/D:/QuangDong/NetBean_Project/Vehicle%20and%20Driver%20Management/src/manageInformation/Bill.java</file>
             <file>file:/D:/QuangDong/NetBean_Project/Vehicle%20and%20Driver%20Management/src/manageInformation/Driver.java</file>
-            <file>file:/D:/QuangDong/NetBean_Project/Vehicle%20and%20Driver%20Management/src/login/tickGreenComplete.java</file>
+            <file>file:/D:/QuangDong/NetBean_Project/Vehicle%20and%20Driver%20Management/src/manageInformation/TripManager.java</file>
             <file>file:/D:/QuangDong/NetBean_Project/Vehicle%20and%20Driver%20Management/src/manageInformation/CarManager.java</file>
             <file>file:/D:/QuangDong/NetBean_Project/Vehicle%20and%20Driver%20Management/src/login/registerWindow.java</file>
             <file>file:/D:/QuangDong/NetBean_Project/Vehicle%20and%20Driver%20Management/src/manageInformation/DriverManager.java</file>
