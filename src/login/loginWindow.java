@@ -18,15 +18,14 @@ public class loginWindow extends javax.swing.JFrame {
     // các thuộc tính của lớp
     protected Random rand = new Random();
     public ConnectDb db = new ConnectDb();
-    
-    
+
     // Định nghĩa các phương thức
     public loginWindow() {
         initComponents();
         // Tạo thể hiện của ConnectDb để thực hiện kết nối Netbean với SQL Server
         db.connectToDatabase("LAPTOP-N1B2Q5TJ\\SQLEXPRESS01", "qd", "QuangDong@21122001", "Vehicle and Driver Management", 1433);
         jlRandomNumber.setText(String.valueOf(10000 + rand.nextInt(99999)));
-        jpwfPassword.setEchoChar((char)0);
+        jpwfPassword.setEchoChar((char) 0);
     }
 
     @SuppressWarnings("unchecked")
@@ -407,7 +406,7 @@ public class loginWindow extends javax.swing.JFrame {
             .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -426,9 +425,9 @@ public class loginWindow extends javax.swing.JFrame {
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(1, 1, 1)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -454,7 +453,7 @@ public class loginWindow extends javax.swing.JFrame {
             jpwfPassword.setText("mật khẩu");
             jpwfPassword.setFont(new Font("Segoe UI", Font.ITALIC, 12));
             jpwfPassword.setForeground(new Color(153, 153, 153));
-            jpwfPassword.setEchoChar((char)0);
+            jpwfPassword.setEchoChar((char) 0);
         }
     }//GEN-LAST:event_jpwfPasswordFocusLost
 
@@ -482,16 +481,11 @@ public class loginWindow extends javax.swing.JFrame {
 
         // Lấy thông tin vai trò đăng nhập
         String role = "";
-        if(jrbtnManager.isSelected())
-        {
+        if (jrbtnManager.isSelected()) {
             role += "Manager";
-        }
-        else if(jrbtnShiper.isSelected())
-        {
+        } else if (jrbtnShiper.isSelected()) {
             role += "Shiper";
-        }
-        else
-        {
+        } else {
             role += "User";
         }
 
@@ -505,47 +499,35 @@ public class loginWindow extends javax.swing.JFrame {
         String identityCode = jtfIdentifyCode.getText();
 
         // Kiểm tra các thông số đã nhập đủ hay chưa
-        if((user_name.equals("tài khoản")) || (password.equals("mật khẩu")) || (identityCode.equals("mã xác thực")))
-        {
+        if ((user_name.equals("tài khoản")) || (password.equals("mật khẩu")) || (identityCode.equals("mã xác thực"))) {
 
             // Kiểm tra phần tài khoản có bỏ trống hay không
-            if((user_name.equals("tài khoản")))
-            {
+            if ((user_name.equals("tài khoản"))) {
                 // hiển hị thông báo đỏ yêu cầu nhập tài khoản
                 jlbWarningAccount.setText("Nhập tài khoản");
-            }
-            else
-            {
+            } else {
                 // xóa cảnh báo đỏ
                 jlbWarningAccount.setText("");
             }
 
             // Kiểm tra phần tài khoản có bỏ trống hay không
-            if((password.equals("mật khẩu")))
-            {
+            if ((password.equals("mật khẩu"))) {
                 // hiển hị thông báo đỏ yêu cầu nhập mật khẩu
                 jlbWarningPassword.setText("Nhập mật khẩu");
-            }
-            else
-            {
+            } else {
                 // xóa cảnh báo đỏ
                 jlbWarningPassword.setText("");
             }
 
             // Kiểm tra phần mã xác thực có bỏ trống hay không
-            if((identityCode.equals("mã xác thực")))
-            {
+            if ((identityCode.equals("mã xác thực"))) {
                 // hiển hị thông báo đỏ yêu cầu nhập mã xác thực
                 jlWarningIdentityCode.setText("Yêu cầu nhập mã xác thực");
-            }
-            else
-            {
+            } else {
                 // xóa cảnh báo đỏ
                 jlWarningIdentityCode.setText("");
             }
-        }
-        else
-        {
+        } else {
             // xóa cảnh báo đỏ
             jlbWarningAccount.setText("");
             // xóa cảnh báo đỏ
@@ -554,10 +536,8 @@ public class loginWindow extends javax.swing.JFrame {
             jlWarningIdentityCode.setText("");
 
             // tiến hành kiểm tra mã xác thực trước
-            if(identityCode.equals(jlRandomNumber.getText()))
-            {
-                if(role.equals("User"))
-                {
+            if (identityCode.equals(jlRandomNumber.getText())) {
+                if (role.equals("User")) {
                     try {
                         // Khởi tạo câu truy vấn
                         String sqlUser = "Select User_ID, [Tài khoản] from [User]";
@@ -575,26 +555,22 @@ public class loginWindow extends javax.swing.JFrame {
                         int userID = -1;
 
                         // duyệt cơ sở dữ liệu để kiểm tra tài khoản
-                        while(rsAccount.next())
-                        {
+                        while (rsAccount.next()) {
                             // Kiểm tra tài khoản từng hàng, nếu khớp thì thoát vòng lặp
                             String taiKhoan = rsAccount.getString("Tài khoản");
-                            if(taiKhoan.equals(user_name))
-                            {
+                            if (taiKhoan.equals(user_name)) {
                                 // đọc UserID từ database
                                 userID = rsAccount.getInt("User_ID");
                                 String sql = "Select [User_ID] From Customers Where [User_ID] = %d".formatted(userID);
-                                
+
                                 // khởi tạo thể hiện để truy vấn
                                 Statement sqlCheckUserIDCustomer = db.cnt.createStatement();
-                                
+
                                 // lấy kết quả truy vấn
                                 ResultSet rsCheckUserIDCustomer = sqlCheckUserIDCustomer.executeQuery(sql);
-                                
-                                while(rsCheckUserIDCustomer.next())
-                                {
-                                    if(userID == rsCheckUserIDCustomer.getInt("User_ID"))
-                                    {
+
+                                while (rsCheckUserIDCustomer.next()) {
+                                    if (userID == rsCheckUserIDCustomer.getInt("User_ID")) {
                                         flagAccount = true;
                                         break;
                                     }
@@ -602,25 +578,20 @@ public class loginWindow extends javax.swing.JFrame {
                                 break;
                             }
                         }
-                        
+
                         // duyệt cơ sở dữ liệu để kiểm tra mật khẩu
-                        if(flagAccount)
-                        {
+                        if (flagAccount) {
                             String txt = "Select [Mật khẩu] From [User] Where [Tài khoản] = '%s'".formatted(user_name);
                             Statement sqlUserPassword = db.cnt.createStatement();
                             ResultSet rsPassword = sqlUserPassword.executeQuery(txt);
 
-                            if(rsPassword.next())
-                            {
-                                String matKhau =rsPassword.getString("Mật khẩu");
-                                if(matKhau.equals(password))
-                                {
+                            if (rsPassword.next()) {
+                                String matKhau = rsPassword.getString("Mật khẩu");
+                                if (matKhau.equals(password)) {
                                     new User(userID, this).setVisible(true);
                                     this.dispose();
                                     setPlaceHolder();
-                                }
-                                else
-                                {
+                                } else {
                                     // hiển hị thông báo đỏ không tồn tại tài khoản
                                     jlWarningLogin.setText("Tài khoản không khớp với vai trò hoặc nhập sai mật khẩu");
 
@@ -636,12 +607,10 @@ public class loginWindow extends javax.swing.JFrame {
                                     jpwfPassword.setText("mật khẩu");
                                     jpwfPassword.setFont(new Font("Segoe UI", Font.ITALIC, 12));
                                     jpwfPassword.setForeground(new Color(153, 153, 153));
-                                    jpwfPassword.setEchoChar((char)0);
+                                    jpwfPassword.setEchoChar((char) 0);
                                 }
                             }
-                        }
-                        else
-                        {
+                        } else {
                             // hiển hị thông báo đỏ không tồn tại tài khoản
                             jlWarningLogin.setText("Tài khoản không khớp với vai trò hoặc nhập sai mật khẩu");
 
@@ -657,15 +626,13 @@ public class loginWindow extends javax.swing.JFrame {
                             jpwfPassword.setText("mật khẩu");
                             jpwfPassword.setFont(new Font("Segoe UI", Font.ITALIC, 12));
                             jpwfPassword.setForeground(new Color(153, 153, 153));
-                            jpwfPassword.setEchoChar((char)0);
+                            jpwfPassword.setEchoChar((char) 0);
                         }
 
                     } catch (SQLException ex) {
                         Logger.getLogger(loginWindow.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                }
-                else if(role.equals("Shiper"))
-                {
+                } else if (role.equals("Shiper")) {
                     try {
                         // Khởi tạo câu truy vấn
                         String sqlUser = "Select User_ID, [Tài khoản] from [User]";
@@ -683,20 +650,16 @@ public class loginWindow extends javax.swing.JFrame {
                         int userID = -1;
 
                         // duyệt cơ sở dữ liệu để kiểm tra tài khoản
-                        while(rsAccount.next())
-                        {
+                        while (rsAccount.next()) {
                             // Kiểm tra tài khoản từng hàng, nếu khớp thì thoát vòng lặp
                             String taiKhoan = rsAccount.getString("Tài khoản");
-                            if(taiKhoan.equals(user_name))
-                            {
+                            if (taiKhoan.equals(user_name)) {
                                 userID = rsAccount.getInt("User_ID");
                                 String sql = "Select [User_ID] From Drivers Where [User_ID] = %d".formatted(userID);
                                 Statement sqlCheckUserIDCustomer = db.cnt.createStatement();
                                 ResultSet rsCheckUserIDCustomer = sqlCheckUserIDCustomer.executeQuery(sql);
-                                while(rsCheckUserIDCustomer.next())
-                                {
-                                    if(userID == rsCheckUserIDCustomer.getInt("User_ID"))
-                                    {
+                                while (rsCheckUserIDCustomer.next()) {
+                                    if (userID == rsCheckUserIDCustomer.getInt("User_ID")) {
                                         flagAccount = true;
                                         break;
                                     }
@@ -705,23 +668,18 @@ public class loginWindow extends javax.swing.JFrame {
                             }
                         }
                         // duyệt cơ sở dữ liệu để kiểm tra mật khẩu
-                        if(flagAccount)
-                        {
+                        if (flagAccount) {
                             String txt = "Select [Mật khẩu] From [User] Where [Tài khoản] = '%s'".formatted(user_name);
                             Statement sqlUserPassword = db.cnt.createStatement();
                             ResultSet rsPassword = sqlUserPassword.executeQuery(txt);
 
-                            if(rsPassword.next())
-                            {
-                                String matKhau =rsPassword.getString("Mật khẩu");
-                                if(matKhau.equals(password))
-                                {
+                            if (rsPassword.next()) {
+                                String matKhau = rsPassword.getString("Mật khẩu");
+                                if (matKhau.equals(password)) {
                                     new Driver(userID, this).setVisible(true);
                                     this.dispose();
                                     setPlaceHolder();
-                                }
-                                else
-                                {
+                                } else {
                                     // hiển hị thông báo đỏ không tồn tại tài khoản
                                     jlWarningLogin.setText("Tài khoản không khớp với vai trò hoặc nhập sai mật khẩu");
 
@@ -737,12 +695,10 @@ public class loginWindow extends javax.swing.JFrame {
                                     jpwfPassword.setText("mật khẩu");
                                     jpwfPassword.setFont(new Font("Segoe UI", Font.ITALIC, 12));
                                     jpwfPassword.setForeground(new Color(153, 153, 153));
-                                    jpwfPassword.setEchoChar((char)0);
+                                    jpwfPassword.setEchoChar((char) 0);
                                 }
                             }
-                        }
-                        else
-                        {
+                        } else {
                             // hiển hị thông báo đỏ không tồn tại tài khoản
                             jlWarningLogin.setText("Tài khoản không khợp với vai trò hoặc nhập sai mật khẩu");
 
@@ -758,111 +714,90 @@ public class loginWindow extends javax.swing.JFrame {
                             jpwfPassword.setText("mật khẩu");
                             jpwfPassword.setFont(new Font("Segoe UI", Font.ITALIC, 12));
                             jpwfPassword.setForeground(new Color(153, 153, 153));
-                            jpwfPassword.setEchoChar((char)0);
+                            jpwfPassword.setEchoChar((char) 0);
                         }
 
                     } catch (SQLException ex) {
                         Logger.getLogger(loginWindow.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                }
-                else if(role.equals("Manager"))
-                {
-                   try {
-                            // Khởi tạo câu truy vấn
-                            String sqlUser = "Select User_ID, [Tài khoản], [Mật khẩu] from [User]";
+                } else if (role.equals("Manager")) {
+                    try {
+                        // Khởi tạo câu truy vấn
+                        String sqlUser = "Select User_ID, [Tài khoản], [Mật khẩu] from [User]";
 
-                            // khởi tại thể hiện của Statement để thực hiện truy vân với cơ sở dữ liệu
-                            Statement st = db.cnt.createStatement();
+                        // khởi tại thể hiện của Statement để thực hiện truy vân với cơ sở dữ liệu
+                        Statement st = db.cnt.createStatement();
 
-                            // Đọc dữ liệu từ database
-                            ResultSet rsAccount = st.executeQuery(sqlUser);
+                        // Đọc dữ liệu từ database
+                        ResultSet rsAccount = st.executeQuery(sqlUser);
 
-                            // tạo cờ để duyệt toàn bộ cơ sở dữ liệu để kiểm tra tài khoản có tồn tại hay không
-                            int roleOfManager = 0;
+                        // tạo cờ để duyệt toàn bộ cơ sở dữ liệu để kiểm tra tài khoản có tồn tại hay không
+                        int roleOfManager = 0;
 
-                            // khởi tạo biến lưu User_ID
-                            int userID = -1;
+                        // khởi tạo biến lưu User_ID
+                        int userID = -1;
 
-                            // duyệt cơ sở dữ liệu để kiểm tra tài khoản
-                            while(rsAccount.next())
-                            {
-                                // Kiểm tra tài khoản từng hàng, nếu khớp thì thoát vòng lặp
-                                String taiKhoan = rsAccount.getString("Tài khoản");
-                                String matKhau = rsAccount.getString("Mật khẩu");
-                                if(taiKhoan.equals(user_name) && matKhau.equals(password))
-                                {
-                                    userID = rsAccount.getInt("User_ID");
-                                    String sql = "Select [User_ID], [Chức vụ] From Manager Where [User_ID] = %d".formatted(userID);
-                                    Statement sqlCheckUserIDCustomer = db.cnt.createStatement();
-                                    ResultSet rsCheckUserIDCustomer = sqlCheckUserIDCustomer.executeQuery(sql);
-                                    while(rsCheckUserIDCustomer.next())
-                                    {
-                                        if(userID == rsCheckUserIDCustomer.getInt("User_ID"))
-                                        {
-                                            if(rsCheckUserIDCustomer.getString("Chức vụ").equals("Quản lý tài xế"))
-                                            {
-                                                roleOfManager = 1;
-                                            }
-                                            else if(rsCheckUserIDCustomer.getString("Chức vụ").equals("Quản lý xe"))
-                                            {
-                                                roleOfManager = 2;
-                                            }
-                                            else if(rsCheckUserIDCustomer.getString("Chức vụ").equals("Quản lý đơn hàng"))
-                                            {
-                                                roleOfManager = 3;
-                                            }
-                                            break;
+                        // duyệt cơ sở dữ liệu để kiểm tra tài khoản
+                        while (rsAccount.next()) {
+                            // Kiểm tra tài khoản từng hàng, nếu khớp thì thoát vòng lặp
+                            String taiKhoan = rsAccount.getString("Tài khoản");
+                            String matKhau = rsAccount.getString("Mật khẩu");
+                            if (taiKhoan.equals(user_name) && matKhau.equals(password)) {
+                                userID = rsAccount.getInt("User_ID");
+                                String sql = "Select [User_ID], [Chức vụ] From Manager Where [User_ID] = %d".formatted(userID);
+                                Statement sqlCheckUserIDCustomer = db.cnt.createStatement();
+                                ResultSet rsCheckUserIDCustomer = sqlCheckUserIDCustomer.executeQuery(sql);
+                                while (rsCheckUserIDCustomer.next()) {
+                                    if (userID == rsCheckUserIDCustomer.getInt("User_ID")) {
+                                        if (rsCheckUserIDCustomer.getString("Chức vụ").equals("Quản lý tài xế")) {
+                                            roleOfManager = 1;
+                                        } else if (rsCheckUserIDCustomer.getString("Chức vụ").equals("Quản lý xe")) {
+                                            roleOfManager = 2;
+                                        } else if (rsCheckUserIDCustomer.getString("Chức vụ").equals("Quản lý đơn hàng")) {
+                                            roleOfManager = 3;
                                         }
+                                        break;
                                     }
-                                    break;
                                 }
+                                break;
                             }
-                            
-                            if(roleOfManager == 1)
-                            {
-                                new DriverManager(userID, this).setVisible(true);
-                                this.dispose();
-                                setPlaceHolder();
-                            }
-                            else if(roleOfManager == 2)
-                            {
-                                new CarManager(userID, this).setVisible(true);
-                                this.dispose();
-                                setPlaceHolder();
-                            }
-                            else if(roleOfManager == 3)
-                            {
-                                new TripManager(userID, this).setVisible(true);
-                                this.dispose();
-                                setPlaceHolder();
-                            }
-                            else
-                            {
-                                // hiển hị thông báo đỏ không tồn tại tài khoản
-                                jlWarningLogin.setText("Tài khoản không khớp với vai trò hoặc nhập sai mật khẩu");
+                        }
 
-                                // Hàm thực hiện thay đổi mã xác nhận
-                                int valueChanged = 10000 + rand.nextInt(99999);
-                                while (valueChanged == Integer.parseInt(jlRandomNumber.getText())) {
-                                    valueChanged = 10000 + rand.nextInt(99999);
-                                }
-                                jlRandomNumber.setFont(new Font("Segoe UI Emoji", Font.ITALIC, 30));
-                                jlRandomNumber.setText(String.valueOf(valueChanged));
+                        if (roleOfManager == 1) {
+                            new DriverManager(userID, this).setVisible(true);
+                            this.dispose();
+                            setPlaceHolder();
+                        } else if (roleOfManager == 2) {
+                            new CarManager(userID, this).setVisible(true);
+                            this.dispose();
+                            setPlaceHolder();
+                        } else if (roleOfManager == 3) {
+                            new TripManager(userID, this).setVisible(true);
+                            this.dispose();
+                            setPlaceHolder();
+                        } else {
+                            // hiển hị thông báo đỏ không tồn tại tài khoản
+                            jlWarningLogin.setText("Tài khoản không khớp với vai trò hoặc nhập sai mật khẩu");
 
-                                // thiết lập placeholder cho mật khẩu
-                                jpwfPassword.setText("mật khẩu");
-                                jpwfPassword.setFont(new Font("Segoe UI", Font.ITALIC, 12));
-                                jpwfPassword.setForeground(new Color(153, 153, 153));
-                                jpwfPassword.setEchoChar((char)0);
+                            // Hàm thực hiện thay đổi mã xác nhận
+                            int valueChanged = 10000 + rand.nextInt(99999);
+                            while (valueChanged == Integer.parseInt(jlRandomNumber.getText())) {
+                                valueChanged = 10000 + rand.nextInt(99999);
                             }
-                       }
-                    catch (SQLException ex) {
+                            jlRandomNumber.setFont(new Font("Segoe UI Emoji", Font.ITALIC, 30));
+                            jlRandomNumber.setText(String.valueOf(valueChanged));
+
+                            // thiết lập placeholder cho mật khẩu
+                            jpwfPassword.setText("mật khẩu");
+                            jpwfPassword.setFont(new Font("Segoe UI", Font.ITALIC, 12));
+                            jpwfPassword.setForeground(new Color(153, 153, 153));
+                            jpwfPassword.setEchoChar((char) 0);
+                        }
+                    } catch (SQLException ex) {
                         Logger.getLogger(loginWindow.class.getName()).log(Level.SEVERE, null, ex);
-                    }         
+                    }
                 }
-            }
-            else
-            {
+            } else {
                 // hiển hị thông báo đỏ mã xác thực nhập bị sai
                 jlWarningIdentityCode.setText("Mã xác thực không đúng");
 
@@ -878,7 +813,7 @@ public class loginWindow extends javax.swing.JFrame {
                 jpwfPassword.setText("mật khẩu");
                 jpwfPassword.setFont(new Font("Segoe UI", Font.ITALIC, 12));
                 jpwfPassword.setForeground(new Color(153, 153, 153));
-                jpwfPassword.setEchoChar((char)0);
+                jpwfPassword.setEchoChar((char) 0);
             }
         }
     }//GEN-LAST:event_jbtnLoginActionPerformed
@@ -978,26 +913,24 @@ public class loginWindow extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jbtnExitActionPerformed
 
-    
-    public void setPlaceHolder()
-    {
+    public void setPlaceHolder() {
         // set place holder cho mã xác thực
         jtfIdentifyCode.setText("mã xác thực");
         jtfIdentifyCode.setFont(new Font("Segoe UI", Font.ITALIC, 12));
         jtfIdentifyCode.setForeground(new Color(153, 153, 153));
-        
+
         // set place holder cho tài khoản
         jtfAccount.setText("tài khoản");
         jtfAccount.setFont(new Font("Segoe UI", Font.ITALIC, 12));
         jtfAccount.setForeground(new Color(153, 153, 153));
-        
+
         // set place holder cho mât khẩu
         jpwfPassword.setText("mật khẩu");
         jpwfPassword.setFont(new Font("Segoe UI", Font.ITALIC, 12));
         jpwfPassword.setForeground(new Color(153, 153, 153));
-        jpwfPassword.setEchoChar((char)0);
+        jpwfPassword.setEchoChar((char) 0);
     }
-                              
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

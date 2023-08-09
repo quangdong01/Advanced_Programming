@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
 import login.loginWindow;
 import login.registerWindow;
 
@@ -41,6 +42,10 @@ public class TripManager extends javax.swing.JFrame {
         setEchor();
         setFirstInformation();
         setSecondInformation();
+        setSixthInformation();
+        setSeventhInformation();
+        setEighthInformation();
+        setNinthInformation();
     }
     
     
@@ -216,6 +221,8 @@ public class TripManager extends javax.swing.JFrame {
         jlShowName.setText(setTaiKhoan);
     }
 
+    
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -240,6 +247,7 @@ public class TripManager extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jSeparator8 = new javax.swing.JSeparator();
         jlShowPersonalInfor = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
         jTabbedPaneAll = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -287,9 +295,17 @@ public class TripManager extends javax.swing.JFrame {
         jlAccept = new javax.swing.JLabel();
         jlCancel = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
+        jLabel27 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtShippingTrip = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
+        jLabel28 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jtCompleteTrip = new javax.swing.JTable();
         jPanel8 = new javax.swing.JPanel();
-        jPanel10 = new javax.swing.JPanel();
+        jLabel29 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jtCancelTrip = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -459,6 +475,21 @@ public class TripManager extends javax.swing.JFrame {
         jPanel2.add(jlShowPersonalInfor, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 80, 243, 35));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, -1, 820));
+
+        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 930, Short.MAX_VALUE)
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 930, 40));
 
         jTabbedPaneAll.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -682,6 +713,11 @@ public class TripManager extends javax.swing.JFrame {
         jbtnCancel.setForeground(new java.awt.Color(255, 255, 255));
         jbtnCancel.setText("Hủy đơn");
         jbtnCancel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbtnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnCancelActionPerformed(evt);
+            }
+        });
         jPanel5.add(jbtnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(544, 6, -1, 31));
         jPanel5.add(jlAccept, new org.netbeans.lib.awtextra.AbsoluteConstraints(317, 43, 202, 20));
         jPanel5.add(jlCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(544, 43, 189, 20));
@@ -689,66 +725,119 @@ public class TripManager extends javax.swing.JFrame {
         jTabbedPaneAll.addTab("tab3", jPanel5);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 930, Short.MAX_VALUE)
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 779, Short.MAX_VALUE)
-        );
+        jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel27.setText("ĐƠN HÀNG ĐANG GIAO");
+        jPanel6.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(356, 20, -1, -1));
+
+        jtShippingTrip.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jtShippingTrip);
+
+        jPanel6.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 908, 714));
 
         jTabbedPaneAll.addTab("tab4", jPanel6);
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel28.setText("ĐƠN HÀNG GIAO THÀNH CÔNG");
+
+        jtCompleteTrip.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jtCompleteTrip);
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 930, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(311, 311, 311)
+                .addComponent(jLabel28)
+                .addContainerGap(340, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3)
+                .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 779, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel28)
+                .addGap(24, 24, 24)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 713, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPaneAll.addTab("tab5", jPanel7);
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel29.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel29.setText("ĐƠN HÀNG ĐÃ HỦY");
+
+        jtCancelTrip.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(jtCancelTrip);
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 930, Short.MAX_VALUE)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(371, 371, 371)
+                .addComponent(jLabel29)
+                .addContainerGap(385, Short.MAX_VALUE))
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4)
+                .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 779, Short.MAX_VALUE)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel29)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 719, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPaneAll.addTab("tab6", jPanel8);
 
-        jPanel1.add(jTabbedPaneAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, -4, 930, 810));
-
-        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 930, Short.MAX_VALUE)
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 30, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 930, 30));
+        jPanel1.add(jTabbedPaneAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, 1, 930, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -962,6 +1051,211 @@ public class TripManager extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jbtnSubmitActionPerformed
 
+    public void setSixthInformation()
+    {
+        // tạo thể hiện cho defaulttablemodol
+        DefaultTableModel defaultTableModel = new DefaultTableModel();
+        jtWaitTrip.setModel(defaultTableModel);
+        
+        // thêm các cột cần thiết
+        defaultTableModel.addColumn("Trip_ID");
+        defaultTableModel.addColumn("Điểm xuất phát");
+        defaultTableModel.addColumn("Điểm kết thúc");
+        defaultTableModel.addColumn("Thời gian đặt");
+        defaultTableModel.addColumn("Thời gian bắt đầu");
+        defaultTableModel.addColumn("Thời gian kết thúc");
+        defaultTableModel.addColumn("Distance");
+        defaultTableModel.addColumn("Weight");
+        defaultTableModel.addColumn("Cost");
+        
+        jtWaitTrip.getColumnModel().getColumn(0).setPreferredWidth(50);
+        jtWaitTrip.getColumnModel().getColumn(1).setPreferredWidth(100);
+        jtWaitTrip.getColumnModel().getColumn(2).setPreferredWidth(100);
+        jtWaitTrip.getColumnModel().getColumn(3).setPreferredWidth(100);
+        jtWaitTrip.getColumnModel().getColumn(4).setPreferredWidth(100);
+        jtWaitTrip.getColumnModel().getColumn(5).setPreferredWidth(100);
+        jtWaitTrip.getColumnModel().getColumn(6).setPreferredWidth(30);
+        jtWaitTrip.getColumnModel().getColumn(7).setPreferredWidth(30);
+        jtWaitTrip.getColumnModel().getColumn(8).setPreferredWidth(30);
+
+        try
+        {
+            // truy vấn dữ liệu từ sql server để lấy danh sách thông tin về xe
+            String getListTrip = "Select [Trip_ID], [Điểm xuất phát], [Điểm kết thúc], [Thời gian đặt hàng], [Thời gian bắt đầu], [Thời gian kết thúc], [Tổng quãng đường], [Khối lượng hàng], [Phí dịch vụ]"
+                    + " From Trips Where [Trạng thái] = ?";
+            
+            PreparedStatement sqlgetListTrip = this.loginwindow.db.cnt.prepareStatement(getListTrip);
+            sqlgetListTrip.setString(1, "Đang chờ");
+            
+            // lấy danh sách xe
+            ResultSet rs = sqlgetListTrip.executeQuery();
+            
+            while(rs.next())
+            {
+                defaultTableModel.addRow(new Object[]{rs.getString("Trip_ID"), rs.getString("Điểm xuất phát"), rs.getString("Điểm kết thúc"), rs.getString("Thời gian đặt hàng"), 
+                rs.getString("Thời gian bắt đầu"), rs.getString("Thời gian kết thúc"), rs.getString("Tổng quãng đường"), rs.getString("Khối lượng hàng"), rs.getString("Phí dịch vụ")});
+            }
+        }
+        catch(SQLException ex)
+        {
+            Logger.getLogger(registerWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+    }
+     
+    public void setSeventhInformation()
+    {
+        // tạo thể hiện cho defaulttablemodol
+        DefaultTableModel defaultTableModel = new DefaultTableModel();
+        jtShippingTrip.setModel(defaultTableModel);
+        
+        // thêm các cột cần thiết
+        defaultTableModel.addColumn("Trip_ID");
+        defaultTableModel.addColumn("Điểm xuất phát");
+        defaultTableModel.addColumn("Điểm kết thúc");
+        defaultTableModel.addColumn("Thời gian đặt");
+        defaultTableModel.addColumn("Thời gian bắt đầu");
+        defaultTableModel.addColumn("Thời gian kết thúc");
+        defaultTableModel.addColumn("Distance");
+        defaultTableModel.addColumn("Weight");
+        defaultTableModel.addColumn("Cost");
+        
+        jtShippingTrip.getColumnModel().getColumn(0).setPreferredWidth(50);
+        jtShippingTrip.getColumnModel().getColumn(1).setPreferredWidth(100);
+        jtShippingTrip.getColumnModel().getColumn(2).setPreferredWidth(100);
+        jtShippingTrip.getColumnModel().getColumn(3).setPreferredWidth(100);
+        jtShippingTrip.getColumnModel().getColumn(4).setPreferredWidth(100);
+        jtShippingTrip.getColumnModel().getColumn(5).setPreferredWidth(100);
+        jtShippingTrip.getColumnModel().getColumn(6).setPreferredWidth(30);
+        jtShippingTrip.getColumnModel().getColumn(7).setPreferredWidth(30);
+        jtShippingTrip.getColumnModel().getColumn(8).setPreferredWidth(30);
+        
+        try
+        {
+            // truy vấn dữ liệu từ sql server để lấy danh sách thông tin về xe
+            String getListTrip = "Select [Trip_ID], [Điểm xuất phát], [Điểm kết thúc], [Thời gian đặt hàng], [Thời gian bắt đầu], [Thời gian kết thúc], [Tổng quãng đường], [Khối lượng hàng], [Phí dịch vụ]"
+                    + " From Trips Where [Trạng thái] = ? And Manager_ID = ?";
+            PreparedStatement sqlgetListTrip = this.loginwindow.db.cnt.prepareStatement(getListTrip);
+            sqlgetListTrip.setString(1, "Đang giao");
+            sqlgetListTrip.setInt(2, this.managerID);
+            // lấy danh sách xe
+            ResultSet rs = sqlgetListTrip.executeQuery();
+            
+            while(rs.next())
+            {
+                defaultTableModel.addRow(new Object[]{rs.getString("Trip_ID"), rs.getString("Điểm xuất phát"), rs.getString("Điểm kết thúc"), rs.getString("Thời gian đặt hàng"), 
+                rs.getString("Thời gian bắt đầu"), rs.getString("Thời gian kết thúc"), rs.getString("Tổng quãng đường"), rs.getString("Khối lượng hàng"), rs.getString("Phí dịch vụ")});
+            }
+        }
+        catch(SQLException ex)
+        {
+            Logger.getLogger(registerWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+    }
+    
+    public void setEighthInformation()
+    {
+        // tạo thể hiện cho defaulttablemodol
+        DefaultTableModel defaultTableModel = new DefaultTableModel();
+        jtCompleteTrip.setModel(defaultTableModel);
+        
+        // thêm các cột cần thiết
+        defaultTableModel.addColumn("Trip_ID");
+        defaultTableModel.addColumn("Điểm xuất phát");
+        defaultTableModel.addColumn("Điểm kết thúc");
+        defaultTableModel.addColumn("Thời gian đặt");
+        defaultTableModel.addColumn("Thời gian bắt đầu");
+        defaultTableModel.addColumn("Thời gian kết thúc");
+        defaultTableModel.addColumn("Distance");
+        defaultTableModel.addColumn("Weight");
+        defaultTableModel.addColumn("Cost");
+        
+        jtCompleteTrip.getColumnModel().getColumn(0).setPreferredWidth(50);
+        jtCompleteTrip.getColumnModel().getColumn(1).setPreferredWidth(100);
+        jtCompleteTrip.getColumnModel().getColumn(2).setPreferredWidth(100);
+        jtCompleteTrip.getColumnModel().getColumn(3).setPreferredWidth(100);
+        jtCompleteTrip.getColumnModel().getColumn(4).setPreferredWidth(100);
+        jtCompleteTrip.getColumnModel().getColumn(5).setPreferredWidth(100);
+        jtCompleteTrip.getColumnModel().getColumn(6).setPreferredWidth(30);
+        jtCompleteTrip.getColumnModel().getColumn(7).setPreferredWidth(30);
+        jtCompleteTrip.getColumnModel().getColumn(8).setPreferredWidth(30);
+        
+        try
+        {
+            // truy vấn dữ liệu từ sql server để lấy danh sách thông tin về xe
+            String getListTrip = "Select [Trip_ID], [Điểm xuất phát], [Điểm kết thúc], [Thời gian đặt hàng], [Thời gian bắt đầu], [Thời gian kết thúc], [Tổng quãng đường], [Khối lượng hàng], [Phí dịch vụ]"
+                    + " From Trips Where [Trạng thái] = ? And Manager_ID = ?";
+            PreparedStatement sqlgetListTrip = this.loginwindow.db.cnt.prepareStatement(getListTrip);
+            sqlgetListTrip.setString(1, "Thành công");
+            sqlgetListTrip.setInt(2, this.managerID);
+            
+            // lấy danh sách xe
+            ResultSet rs = sqlgetListTrip.executeQuery();
+            
+            while(rs.next())
+            {
+                defaultTableModel.addRow(new Object[]{rs.getString("Trip_ID"), rs.getString("Điểm xuất phát"), rs.getString("Điểm kết thúc"), rs.getString("Thời gian đặt hàng"), 
+                rs.getString("Thời gian bắt đầu"), rs.getString("Thời gian kết thúc"), rs.getString("Tổng quãng đường"), rs.getString("Khối lượng hàng"), rs.getString("Phí dịch vụ")});
+            }
+        }
+        catch(SQLException ex)
+        {
+            Logger.getLogger(registerWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+    }
+    
+    public void setNinthInformation()
+    {
+        // tạo thể hiện cho defaulttablemodol
+        DefaultTableModel defaultTableModel = new DefaultTableModel();
+        jtCancelTrip.setModel(defaultTableModel);
+        
+        // thêm các cột cần thiết
+        defaultTableModel.addColumn("Trip_ID");
+        defaultTableModel.addColumn("Điểm xuất phát");
+        defaultTableModel.addColumn("Điểm kết thúc");
+        defaultTableModel.addColumn("Thời gian đặt");
+        defaultTableModel.addColumn("Thời gian bắt đầu");
+        defaultTableModel.addColumn("Thời gian kết thúc");
+        defaultTableModel.addColumn("Distance");
+        defaultTableModel.addColumn("Weight");
+        defaultTableModel.addColumn("Cost");
+        
+        jtCancelTrip.getColumnModel().getColumn(0).setPreferredWidth(50);
+        jtCancelTrip.getColumnModel().getColumn(1).setPreferredWidth(100);
+        jtCancelTrip.getColumnModel().getColumn(2).setPreferredWidth(100);
+        jtCancelTrip.getColumnModel().getColumn(3).setPreferredWidth(100);
+        jtCancelTrip.getColumnModel().getColumn(4).setPreferredWidth(100);
+        jtCancelTrip.getColumnModel().getColumn(5).setPreferredWidth(100);
+        jtCancelTrip.getColumnModel().getColumn(6).setPreferredWidth(30);
+        jtCancelTrip.getColumnModel().getColumn(7).setPreferredWidth(30);
+        jtCancelTrip.getColumnModel().getColumn(8).setPreferredWidth(30);
+        
+        try
+        {
+            // truy vấn dữ liệu từ sql server để lấy danh sách thông tin về xe
+            String getListTrip = "Select [Trip_ID], [Điểm xuất phát], [Điểm kết thúc], [Thời gian đặt hàng], [Thời gian bắt đầu], [Thời gian kết thúc], [Tổng quãng đường], [Khối lượng hàng], [Phí dịch vụ]"
+                    + " From Trips Where [Trạng thái] = ? And Manager_ID = ?";
+            PreparedStatement sqlgetListTrip = this.loginwindow.db.cnt.prepareStatement(getListTrip);
+            sqlgetListTrip.setString(1, "Đã hủy");
+            sqlgetListTrip.setInt(2, this.managerID);
+            
+            // lấy danh sách xe
+            ResultSet rs = sqlgetListTrip.executeQuery();
+            
+            while(rs.next())
+            {
+                defaultTableModel.addRow(new Object[]{rs.getString("Trip_ID"), rs.getString("Điểm xuất phát"), rs.getString("Điểm kết thúc"), rs.getString("Thời gian đặt hàng"), 
+                rs.getString("Thời gian bắt đầu"), rs.getString("Thời gian kết thúc"), rs.getString("Tổng quãng đường"), rs.getString("Khối lượng hàng"), rs.getString("Phí dịch vụ")});
+            }
+        }
+        catch(SQLException ex)
+        {
+            Logger.getLogger(registerWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+    }
+    
+    
+    
     private void jllogOutTripManagerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jllogOutTripManagerMouseClicked
         // TODO add your handling code here:
         this.loginwindow.setVisible(true);
@@ -1055,7 +1349,183 @@ public class TripManager extends javax.swing.JFrame {
 
     private void jbtnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAcceptActionPerformed
         // TODO add your handling code here:
+        int driverID = -1;
+        int carID = -1;
+        
+        try
+        {
+            int row = jtWaitTrip.getSelectedRow();
+            if(row == -1)
+            {
+                jlAccept.setText("Vui lòng chọn một đơn hàng");
+            }    
+            else
+            {
+                int stripID = Integer.parseInt(String.valueOf(jtWaitTrip.getValueAt(row, 0)));
+                int weightTrip = -1;
+                // Tạo câu lệnh truy vấn tài khối lượng đơn hàng
+                String getWeight = "Select [Khối lượng hàng] from [Trips] Where [Trip_ID] = ?";
+
+                // tạo thể hiện kết nối với db để chuẩn bị truy vấn
+                try(PreparedStatement sqlgetWeight = this.loginwindow.db.cnt.prepareStatement(getWeight))
+                {
+                    sqlgetWeight.setInt(1, stripID);
+                    // trả về bản ghi
+
+                    ResultSet rsWeight = sqlgetWeight.executeQuery();
+
+                    while(rsWeight.next())
+                    {
+                        weightTrip = Integer.parseInt(rsWeight.getString("Khối lượng hàng"));
+                    }
+                }
+
+                // Tạo câu lệnh truy vấn tài xế 
+                String SweepDriver = "Select [Driver_ID] from [Drivers] Where [Trạng thái] = ?";
+
+                // tạo thể hiện kết nối với db để chuẩn bị truy vấn
+                try(PreparedStatement sqlSweepDriver = this.loginwindow.db.cnt.prepareStatement(SweepDriver))
+                {
+                    sqlSweepDriver.setString(1, "Đang chờ việc");
+                    // trả về bản ghi
+
+                    ResultSet rsDriver = sqlSweepDriver.executeQuery();
+
+                    while(rsDriver.next())
+                    {
+                        driverID = Integer.parseInt(rsDriver.getString("Driver_ID"));
+                        break;
+                    }
+                }
+                if(driverID == -1)
+                {
+                    jlAccept.setText("thử lại sau, chưa có tài xế...");
+                }
+                else
+                {
+                    // Tạo câu lệnh truy vấn tìm xe
+                    String SweepCar = "Select [Car_ID], [Khối lượng tối đa] from [Cars] Where [Trạng thái xe] = ?";
+
+                    // tạo thể hiện kết nối với db để chuẩn bị truy vấn
+                    try(PreparedStatement sqlSweepCar = this.loginwindow.db.cnt.prepareStatement(SweepCar))
+                    {
+                        sqlSweepCar.setString(1, "Đang trong kho");
+                        // trả về bản ghi
+
+                        ResultSet rsCar = sqlSweepCar.executeQuery();
+
+                        while(rsCar.next())
+                        {
+                            int weight = Integer.parseInt(rsCar.getString("Khối lượng tối đa"));
+                            if(weight > weightTrip)
+                            {
+                                carID = Integer.parseInt(rsCar.getString("Car_ID"));
+                                break;
+                            }
+                        }
+                    }
+
+                    if(carID == -1)
+                    {
+                        jlAccept.setText("thử lại sau, xe đang hết...");
+                    }
+                    else
+                    {
+
+                        String updateTripStatus = "Update [Trips] "
+                        + "Set Driver_ID = ?, Car_ID = ?, Manager_ID = ?, [Trạng thái] = ?"
+                        + " Where Trip_ID = ?";
+                        jlCancel.setText("");
+                        // tạo thể hiện
+                        try(PreparedStatement sqlupdateTripStatus = this.loginwindow.db.cnt.prepareStatement(updateTripStatus))
+                        {
+                            sqlupdateTripStatus.setInt(1, driverID);
+                            sqlupdateTripStatus.setInt(2, carID);
+                            sqlupdateTripStatus.setInt(3, this.managerID);
+                            sqlupdateTripStatus.setString(4, "Đã giao cho tài xế");
+                            sqlupdateTripStatus.setInt(5, stripID);
+
+                            // thực hiện truy vấn
+                            sqlupdateTripStatus.executeUpdate();
+                        }
+
+                        String updateDrivers = "Update [Drivers] "
+                        + "Set [Trạng thái] = ?"
+                        + " Where Driver_ID = ?";
+
+                        try(PreparedStatement sqlupdateDrivers = this.loginwindow.db.cnt.prepareStatement(updateDrivers))
+                        {
+                            sqlupdateDrivers.setString(1, "Đang làm việc");
+                            sqlupdateDrivers.setInt(2, driverID);
+
+                            // thực hiện truy vấn
+                            sqlupdateDrivers.executeUpdate();
+                        }
+
+                        String updateCars = "Update [Cars] "
+                        + "Set [Trạng thái xe] = ?, Driver_ID = ?"
+                        + " Where Car_ID = ?";
+
+                        try(PreparedStatement sqlupdateCars = this.loginwindow.db.cnt.prepareStatement(updateCars))
+                        {
+                            sqlupdateCars.setString(1, "Đang vận chuyển");
+                            sqlupdateCars.setInt(2, driverID);
+                            sqlupdateCars.setInt(3, carID);
+
+                            // thực hiện truy vấn
+                            sqlupdateCars.executeUpdate();
+
+                            setSixthInformation();
+                            setSeventhInformation(); 
+                        } 
+                    }
+                }
+            }
+        }
+        catch(SQLException ex)
+        {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jbtnAcceptActionPerformed
+
+    private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed
+        // TODO add your handling code here:
+        String updateTripStatus = "Update [Trips] "
+        + "Set Manager_ID = ?, [Trạng thái] = ?"
+        + " Where Trip_ID = ?";
+        
+        try
+        {
+            int row = jtWaitTrip.getSelectedRow();
+            
+            if(row == -1)
+            {
+                jlCancel.setText("chọn đơn hàng cần hủy");
+            }
+            else
+            {
+                jlCancel.setText("");
+                int stripID = Integer.parseInt(String.valueOf(jtWaitTrip.getValueAt(row, 0)));
+                
+                // tạo thể hiện
+                PreparedStatement sqlupdateTripStatus = this.loginwindow.db.cnt.prepareStatement(updateTripStatus);
+
+                sqlupdateTripStatus.setInt(1, this.managerID);
+                sqlupdateTripStatus.setString(2, "Đã hủy");
+                sqlupdateTripStatus.setInt(3, stripID);
+
+                // thực hiện truy vấn
+                sqlupdateTripStatus.executeUpdate();
+                
+                setSixthInformation();
+                setNinthInformation();  
+            }
+        }
+        catch(SQLException ex)
+        {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jbtnCancelActionPerformed
 
     
 
@@ -1070,6 +1540,9 @@ public class TripManager extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1087,6 +1560,9 @@ public class TripManager extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -1128,6 +1604,9 @@ public class TripManager extends javax.swing.JFrame {
     private javax.swing.JPasswordField jpwfConfirmPassword;
     private javax.swing.JPasswordField jpwfNewPassword;
     private javax.swing.JPasswordField jpwfOldPassword;
+    private javax.swing.JTable jtCancelTrip;
+    private javax.swing.JTable jtCompleteTrip;
+    private javax.swing.JTable jtShippingTrip;
     private javax.swing.JTable jtWaitTrip;
     // End of variables declaration//GEN-END:variables
 }

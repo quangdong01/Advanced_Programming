@@ -513,6 +513,7 @@ public class DriverManager extends javax.swing.JFrame {
         jSeparator6 = new javax.swing.JSeparator();
         jlShowPersonalInfor = new javax.swing.JLabel();
         jlChangeDriver = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         jTabbedPaneAll = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         jSeparator7 = new javax.swing.JSeparator();
@@ -645,7 +646,6 @@ public class DriverManager extends javax.swing.JFrame {
         jlWarningConfirm = new javax.swing.JLabel();
         jlCarID = new javax.swing.JLabel();
         jtfDriverID = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -812,6 +812,21 @@ public class DriverManager extends javax.swing.JFrame {
         jpanelActive.add(jlChangeDriver, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 462, 243, 35));
 
         getContentPane().add(jpanelActive, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 810));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 930, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 930, 30));
 
         jTabbedPaneAll.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1791,21 +1806,6 @@ public class DriverManager extends javax.swing.JFrame {
 
         getContentPane().add(jTabbedPaneAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, -4, 930, 810));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 930, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 30, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 930, 30));
-
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -2594,6 +2594,7 @@ public class DriverManager extends javax.swing.JFrame {
                                 sqlupdateAccount.executeUpdate();
                             }
 
+                            
                             // câu truy vấn đẩy thông tin bằng lái và lương và database Drivers
                             String addNewDriver = "Insert into Drivers(User_ID, Manager_ID, [Số giấy phép], Hạng, Lương, [Đánh giá], [Trạng thái])"
                             + " Values(?, ?, ?, ?, ?, ?, ?)";

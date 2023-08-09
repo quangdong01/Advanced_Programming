@@ -11,10 +11,7 @@ import java.sql.Timestamp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import login.loginWindow;
 import login.registerWindow;
@@ -73,8 +70,6 @@ public class User extends javax.swing.JFrame {
         jpwfOldPassword.setEchoChar((char)0);
         jpwfNewPassword.setEchoChar((char)0);
         jpwfConfirmPassword.setEchoChar((char)0);
-        // jpwfPasswordAddNewDriver.setEchoChar((char)0);
-        // jpwfRePassword.setEchoChar((char)0);
     }  
         
     public void setLabelGen()
@@ -619,6 +614,7 @@ public class User extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         jtCancelTrip = new javax.swing.JTable();
         jLabel29 = new javax.swing.JLabel();
+        jPanel13 = new javax.swing.JPanel();
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sourceIMG/resource/logo VIN.png"))); // NOI18N
 
@@ -989,7 +985,7 @@ public class User extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, -1));
 
         jTabbedPaneUser.setBackground(new java.awt.Color(255, 255, 255));
         jTabbedPaneUser.setOpaque(true);
@@ -1063,7 +1059,7 @@ public class User extends javax.swing.JFrame {
         jlRole.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jPanel3.add(jlRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 210, 280, 30));
 
-        jTabbedPaneUser.addTab("tab1", jPanel3);
+        jTabbedPaneUser.addTab("", jPanel3);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -1178,7 +1174,7 @@ public class User extends javax.swing.JFrame {
         jlSuccess.setOpaque(true);
         jPanel4.add(jlSuccess, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 610, 830, 30));
 
-        jTabbedPaneUser.addTab("tab2", jPanel4);
+        jTabbedPaneUser.addTab("", jPanel4);
 
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
         jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1328,7 +1324,7 @@ public class User extends javax.swing.JFrame {
         jlWarningIdentityNumber.setForeground(new java.awt.Color(255, 0, 0));
         jPanel11.add(jlWarningIdentityNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 415, 682, 15));
 
-        jTabbedPaneUser.addTab("tab3", jPanel11);
+        jTabbedPaneUser.addTab("", jPanel11);
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1436,7 +1432,7 @@ public class User extends javax.swing.JFrame {
         jlSuccessEvaluate.setOpaque(true);
         jPanel5.add(jlSuccessEvaluate, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 490, 310, 30));
 
-        jTabbedPaneUser.addTab("tab4", jPanel5);
+        jTabbedPaneUser.addTab("", jPanel5);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1559,7 +1555,7 @@ public class User extends javax.swing.JFrame {
         jLabel26.setText("CHÚC QUÝ KHÁCH TRẢI NGHIỆM DỊCH VỤ HÀI LÒNG");
         jPanel6.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 730, 380, 50));
 
-        jTabbedPaneUser.addTab("tab5", jPanel6);
+        jTabbedPaneUser.addTab("", jPanel6);
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1578,7 +1574,7 @@ public class User extends javax.swing.JFrame {
         jtWaitTrip.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jScrollPane1.setViewportView(jtWaitTrip);
 
-        jPanel7.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 900, 710));
+        jPanel7.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 890, 710));
 
         jbtnDeleteTrip.setBackground(new java.awt.Color(51, 51, 255));
         jbtnDeleteTrip.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -1595,7 +1591,7 @@ public class User extends javax.swing.JFrame {
         jlWarning.setForeground(new java.awt.Color(204, 0, 0));
         jPanel7.add(jlWarning, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 30, 240, 20));
 
-        jTabbedPaneUser.addTab("tab6", jPanel7);
+        jTabbedPaneUser.addTab("", jPanel7);
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1613,20 +1609,22 @@ public class User extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jtShippingTrip);
 
-        jPanel8.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 79, 908, 714));
+        jPanel8.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 79, 900, 714));
 
         jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(204, 0, 0));
         jLabel27.setText("ĐƠN HÀNG ĐANG GIAO");
         jPanel8.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(356, 20, -1, -1));
 
-        jTabbedPaneUser.addTab("tab7", jPanel8);
+        jTabbedPaneUser.addTab("", jPanel8);
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel28.setForeground(new java.awt.Color(255, 0, 0));
         jLabel28.setText("ĐƠN HÀNG GIAO THÀNH CÔNG");
+        jPanel9.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(319, 32, -1, -1));
 
         jtCompleteTrip.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1641,30 +1639,9 @@ public class User extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(jtCompleteTrip);
 
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap(329, Short.MAX_VALUE)
-                .addComponent(jLabel28)
-                .addGap(312, 312, 312))
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jLabel28)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 718, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        jPanel9.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 75, 898, 718));
 
-        jTabbedPaneUser.addTab("tab8", jPanel9);
+        jTabbedPaneUser.addTab("", jPanel9);
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1694,7 +1671,7 @@ public class User extends javax.swing.JFrame {
                 .addComponent(jScrollPane4)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                .addContainerGap(375, Short.MAX_VALUE)
+                .addContainerGap(365, Short.MAX_VALUE)
                 .addComponent(jLabel29)
                 .addGap(371, 371, 371))
         );
@@ -1708,9 +1685,24 @@ public class User extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPaneUser.addTab("tab9", jPanel10);
+        jTabbedPaneUser.addTab("", jPanel10);
 
-        getContentPane().add(jTabbedPaneUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 920, 830));
+        getContentPane().add(jTabbedPaneUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 910, 830));
+
+        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 910, Short.MAX_VALUE)
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 910, 40));
 
         pack();
         setLocationRelativeTo(null);
@@ -2604,6 +2596,7 @@ public class User extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

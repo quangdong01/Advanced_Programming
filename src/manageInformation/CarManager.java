@@ -404,6 +404,7 @@ public void setFirstInformation()
         jlShowPersonalInfor = new javax.swing.JLabel();
         jlChangeInformationCar = new javax.swing.JLabel();
         jSeparator8 = new javax.swing.JSeparator();
+        jPanel8 = new javax.swing.JPanel();
         jTabbedPaneAll = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         jSeparator7 = new javax.swing.JSeparator();
@@ -506,7 +507,6 @@ public void setFirstInformation()
         jlWarningConfirm = new javax.swing.JLabel();
         jlCarID = new javax.swing.JLabel();
         jtfCarID = new javax.swing.JTextField();
-        jPanel8 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -746,6 +746,21 @@ public void setFirstInformation()
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 820));
+
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 930, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 930, 30));
 
         jTabbedPaneAll.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1495,21 +1510,6 @@ public void setFirstInformation()
         jTabbedPaneAll.addTab("tab7", jPanel10);
 
         jPanel1.add(jTabbedPaneAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(281, -4, 920, 820));
-
-        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 930, Short.MAX_VALUE)
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 30, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 930, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
